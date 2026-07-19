@@ -23,20 +23,61 @@
 
   body{
     margin:0;
-    padding:20px;
+    padding:0;
     background:var(--page);
     color:var(--text);
     font-family:"Inter",Arial,sans-serif;font-weight:400;
   }
 
   .page{
-    padding:20px 0;
+    padding:1rem 0;
     width:100%;
     max-width:620px;
     margin:0 auto;
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:1rem;
+  }
+
+  .site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:0 4px;
+    min-height:28px;
+  }
+
+  .site-brand,
+  .site-location{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-width:0;
+    font-size:14px;
+    line-height:1.2;
+  }
+
+  .site-brand{font-weight:600}
+
+  .site-logo{
+    display:block;
+    width:20px;
+    height:20px;
+    flex:0 0 20px;
+    border-radius:50%;
+    object-fit:cover;
+  }
+
+  .site-location{
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  .site-location-icon{
+    width:18px;
+    height:18px;
+    flex:0 0 18px;
   }
 
   .hero{
@@ -48,8 +89,8 @@
     color:#fff;
     background:
       linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-      url("assets/hero-family-v3.png")
-      58% center/cover no-repeat;
+      url("assets/hero-family-v5.png")
+      25% center/cover no-repeat;
   }
 
   .hero::before{
@@ -102,7 +143,7 @@
     margin:0 auto 10px;
     fill:none;
     stroke:currentColor;
-    stroke-width:1.8;
+    stroke-width:2;
     stroke-linecap:round;
     stroke-linejoin:round;
   }
@@ -236,6 +277,9 @@
   }
 
   .cta{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
     display:flex;
     width:100%;
     min-height:58px;
@@ -254,6 +298,26 @@
     transition:background .15s,transform .15s;
   }
 
+  .cta::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:-50%;
+    bottom:-50%;
+    left:-45%;
+    width:32%;
+    pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    mix-blend-mode:soft-light;
+    transform:skewX(-18deg) translateX(-220%);
+    animation:cta-shine 5s ease-in-out infinite;
+  }
+
+  @keyframes cta-shine{
+    0%{transform:skewX(-18deg) translateX(-220%)}
+    18%,100%{transform:skewX(-18deg) translateX(620%)}
+  }
+
   .cta:hover{
     background:var(--accent-hover);
   }
@@ -263,13 +327,32 @@
   }
 
   .cta img{
+    position:relative;
+    z-index:1;
     width:22px;
     height:22px;
     fill:currentColor;
   }
 
+  .cta-icon{
+    position:relative;
+    z-index:1;
+    width:22px;
+    height:22px;
+    flex:0 0 22px;
+  }
+
+  .cta span{
+    position:relative;
+    z-index:1;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .cta::before{animation:none}
+  }
+
   @media (max-width:520px){
-    body{padding:20px 12px}
+    body{padding:0}
     .hero{padding:26px 20px 22px}
     .advantages{gap:10px}
     .advantage{font-size:12px}
@@ -332,10 +415,10 @@ flex:0 0 3rem;
 }
 .option input:checked + label{
 background:#F3F5F7;
-border-color:#D8DDE3;
+border:2px solid #000;
 }
 .option input:checked + label::after{
-content:"✓";
+content:none;
 position:absolute;
 top:10px;
 right:10px;
@@ -350,6 +433,19 @@ align-items:center;
 justify-content:center;
 font-weight:600;
 }
+
+.option-check{
+  position:absolute;
+  top:10px;
+  right:10px;
+  display:none;
+  width:22px;
+  height:22px;
+  color:#000;
+  fill:currentColor;
+}
+
+.option input:checked + label .option-check{display:block}
 
 
   .options,
@@ -480,27 +576,39 @@ font-weight:600;
   flex:0 0 auto;
 }
 
+.tabler-icon{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
 </style>
 </head>
 <body>
 <main class="page">
+  <header class="site-header">
+    <div class="site-brand">
+      <img class="site-logo" src="assets/burgilau-logo-mark.png" alt="">
+      <span>Perfectum Prime</span>
+    </div>
+    <div class="site-location">
+      <svg class="site-location-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0"/></svg>
+      <span>г. Астана</span>
+    </div>
+  </header>
   <section class="hero">
     <p class="eyebrow" style="color:rgba(255,255,255,.8);margin-bottom:1.5lh">Установка приточного клапана</p>
     <h1>Тишина.<br>Свежий воздух.<br>Без сквозняков.</h1>
 
     <div class="advantages">
       <div class="advantage">
-        <img class="advantage-icon" src="assets/icon-no-dust.svg" alt="">
+        <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"/><path d="M3 3l2 2M21 3l-2 2M3 21l2 -2M21 21l-2 -2"/></svg>
         Без пыли<br>и грязи
       </div>
 
       <div class="advantage">
-        <img class="advantage-icon" src="assets/icon-calendar.svg" alt="">
+        <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M15 19l2 2l4 -4"/></svg>
         Установка<br>уже сегодня
       </div>
 
       <div class="advantage">
-        <img class="advantage-icon" src="assets/icon-warranty.svg" alt="">
+        <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"/><path d="M15 19l2 2l4 -4"/></svg>
         Гарантия<br>на работу
       </div>
     </div>
@@ -513,19 +621,15 @@ font-weight:600;
       <div class="options compact">
         <div class="option">
           <input type="radio" name="material" id="material-brick" value="0" checked>
-          <label for="material-brick"><img class="option-icon" src="assets/material-brick.png" alt=""><span>Кирпич</span></label>
+          <label for="material-brick"><img class="option-icon" src="assets/material-brick.png" alt=""><span>Кирпич</span><svg class="option-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
         </div>
         <div class="option">
           <input type="radio" name="material" id="material-concrete" value="2500">
-          <label for="material-concrete"><img class="option-icon" src="assets/material-concrete.png" alt=""><span>Бетон</span></label>
+          <label for="material-concrete"><img class="option-icon" src="assets/material-concrete.png" alt=""><span>Бетон</span><svg class="option-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
         </div>
         <div class="option">
           <input type="radio" name="material" id="material-monolith" value="5000">
-          <label for="material-monolith"><img class="option-icon" src="assets/material-monolith.png" alt=""><span>Монолит</span></label>
-        </div>
-        <div class="option">
-          <input type="radio" name="material" id="material-unknown" value="0">
-          <label for="material-unknown"><img class="option-icon" src="assets/material-unknown.png" alt=""><span>Не знаю</span></label>
+          <label for="material-monolith"><img class="option-icon" src="assets/material-monolith.png" alt=""><span>Монолит</span><svg class="option-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
         </div>
       </div>
     </div>
@@ -535,19 +639,15 @@ font-weight:600;
       <div class="options compact">
         <div class="option">
           <input type="radio" name="thickness" id="thickness-small" value="0" checked>
-          <label for="thickness-small"><img class="option-icon" src="assets/thickness-small.png" alt=""><span>До 30 см</span></label>
+          <label for="thickness-small"><img class="option-icon" src="assets/thickness-small.png" alt=""><span>До 30 см</span><svg class="option-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
         </div>
         <div class="option">
           <input type="radio" name="thickness" id="thickness-medium" value="2500">
-          <label for="thickness-medium"><img class="option-icon" src="assets/thickness-medium.png" alt=""><span>30–50 см</span></label>
+          <label for="thickness-medium"><img class="option-icon" src="assets/thickness-medium.png" alt=""><span>30–50 см</span><svg class="option-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
         </div>
         <div class="option">
           <input type="radio" name="thickness" id="thickness-large" value="6000">
-          <label for="thickness-large"><img class="option-icon" src="assets/thickness-large.png" alt=""><span>Более 50 см</span></label>
-        </div>
-        <div class="option">
-          <input type="radio" name="thickness" id="thickness-unknown" value="0">
-          <label for="thickness-unknown"><img class="option-icon" src="assets/thickness-unknown.png" alt=""><span>Не знаю</span></label>
+          <label for="thickness-large"><img class="option-icon" src="assets/thickness-large.png" alt=""><span>Более 50 см</span><svg class="option-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
         </div>
       </div>
     </div>
@@ -560,8 +660,8 @@ font-weight:600;
 
 
     <a class="cta" id="whatsapp" href="#" target="_blank" rel="noopener">
-      <img src="assets/icon-whatsapp.svg" alt="">
-      Заказать установку
+      <svg class="cta-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/></svg>
+      <span>Заказать установку</span>
     </a>
   </section>
 
@@ -574,8 +674,8 @@ font-weight:600;
       <h2 class="master-name">Perfectum Prime</h2>
       <p class="master-role">Ваш партнёр по бурению</p>
     </div>
-    <svg class="master-arrow" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m9 18 6-6-6-6"/>
+    <svg class="master-arrow tabler-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 6l6 6l-6 6"/>
     </svg>
   </a>
 </main>
@@ -613,8 +713,7 @@ font-weight:600;
     const thickness = selectedText("thickness");
 
     const message =
-      `Здравствуйте! Хочу уточнить стоимость.%0A%0A` +
-      `Услуга: Установка приточного клапана%0A` +
+      `Здравствуйте! Хочу заказать установку приточного клапана.%0A%0A` +
       `Материал стены: ${encodeURIComponent(material)}%0A` +
       `Толщина стены: ${encodeURIComponent(thickness)}%0A` +
       `Предварительная стоимость: от ${formatted} ₸`;
