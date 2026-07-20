@@ -576,6 +576,21 @@ font-weight:600;
   flex:0 0 auto;
 }
 
+/* Keep every choice group in a single three-column row on all screen sizes. */
+.options,
+.options.compact,
+.options.services{
+  grid-auto-flow:row;
+  grid-auto-columns:auto;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.option label{
+  min-width:0;
+  padding-inline:8px;
+  font-size:clamp(12px,3.5vw,16px);
+}
+
 .tabler-icon{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 </style>
