@@ -18,3 +18,7 @@ Thumbs.db
 
 # Local refactoring notes
 REFACTORING_PLAN.md
+
+# Vite
+node_modules/
+dist/
