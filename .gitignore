@@ -16,9 +16,6 @@ Thumbs.db
 # Archives generated for transfer
 *.zip
 
-# Local refactoring notes
-REFACTORING_PLAN.md
-
 # Vite
 node_modules/
 dist/
