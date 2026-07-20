@@ -74,6 +74,8 @@ Do not add:
 
 ## Writing and maintenance
 
+- During the current session, explicitly tell the user about any changes being
+  made to the instruction system.
 - Keep entries concise, actionable, and grouped under descriptive headings.
 - Record the current rule, not the history of how it was discovered.
 - State scope explicitly when a rule applies only to part of the repository.
