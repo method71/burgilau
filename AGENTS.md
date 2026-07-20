@@ -23,6 +23,9 @@ spans several listed areas, read each applicable file.
   `.agents/README.md`
 - Performing work that implements or affects the active refactoring plan:
   `.agents/refactoring.md`
+- Creating, editing, selecting, or reviewing advertising content or creatives
+  for the window air-inlet valve: `.agents/content-matrix.md` (temporary; use
+  until the user replaces or withdraws this content matrix).
 
 Detailed topic instructions will be added here as the project develops. Do
 not assume that an unlisted file under `.agents/` applies to a task.

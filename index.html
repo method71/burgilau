@@ -21,29 +21,61 @@
       <span>г. Астана</span>
     </div>
   </header>
-  <section class="hero">
-    <p class="eyebrow hero-eyebrow">Установка приточного клапана</p>
-    <h1>Тишина.<br>Свежий воздух.<br>Без сквозняков.</h1>
-
-    <div class="advantages">
-      <div class="advantage">
-        <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"/><path d="M3 3l2 2M21 3l-2 2M3 21l2 -2M21 21l-2 -2"/></svg>
-        Без пыли<br>и грязи
-      </div>
-
-      <div class="advantage">
-        <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M15 19l2 2l4 -4"/></svg>
-        Установка<br>уже сегодня
-      </div>
-
-      <div class="advantage">
-        <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"/><path d="M15 19l2 2l4 -4"/></svg>
-        Гарантия<br>на работу
+  <section class="hero-slider" aria-label="Специальные предложения">
+    <div class="hero-controls">
+      <div class="hero-pagination" aria-label="Выбор предложения">
+        <button class="hero-dot is-active" type="button" aria-label="Предложение 1" aria-current="true"></button>
+        <button class="hero-dot" type="button" aria-label="Предложение 2"></button>
       </div>
     </div>
+
+    <div class="hero-track">
+      <article class="hero" aria-label="Предложение 1 из 2">
+        <p class="eyebrow hero-eyebrow">Установка приточного клапана</p>
+        <h1>Тишина.<br>Свежий воздух.<br>Без сквозняков.</h1>
+
+        <div class="advantages">
+          <div class="advantage">
+            <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"/><path d="M3 3l2 2M21 3l-2 2M3 21l2 -2M21 21l-2 -2"/></svg>
+            Без пыли<br>и грязи
+          </div>
+          <div class="advantage">
+            <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M15 19l2 2l4 -4"/></svg>
+            Установка<br>уже сегодня
+          </div>
+          <div class="advantage">
+            <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"/><path d="M15 19l2 2l4 -4"/></svg>
+            Гарантия<br>на работу
+          </div>
+        </div>
+        <a class="cta hero-cta" href="#calculator">Узнать цену</a>
+      </article>
+
+      <article class="hero hero--aircon" aria-label="Предложение 2 из 2">
+        <p class="eyebrow hero-eyebrow">Отверстия для кондиционеров</p>
+        <h1>Точное отверстие.<br>Чистый монтаж.<br>Без лишней пыли.</h1>
+
+        <div class="advantages">
+          <div class="advantage">
+            <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"/><path d="M3 3l2 2M21 3l-2 2M3 21l2 -2M21 21l-2 -2"/></svg>
+            Чистое<br>бурение
+          </div>
+          <div class="advantage">
+            <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M21 12h-3M12 21v-3M3 12h3"/></svg>
+            Точный<br>диаметр
+          </div>
+          <div class="advantage">
+            <svg class="advantage-icon tabler-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"/><path d="M15 19l2 2l4 -4"/></svg>
+            Готово<br>к монтажу
+          </div>
+        </div>
+        <a class="cta hero-cta" href="#calculator">Узнать цену</a>
+      </article>
+    </div>
+
   </section>
 
-  <section class="calculator">
+  <section class="calculator" id="calculator">
 
     <div class="field">
       <span class="field-title">Материал стены</span>

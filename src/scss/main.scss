@@ -35,7 +35,7 @@
     justify-content:space-between;
     gap:16px;
     padding:0 4px;
-    min-height:28px;
+    min-height:24px;
   }
 
   .site-brand,
@@ -44,11 +44,10 @@
     align-items:center;
     gap:8px;
     min-width:0;
-    font-size:14px;
+    font-size:12px;
+    font-weight:600;
     line-height:1.2;
   }
-
-  .site-brand{font-weight:600}
 
   .site-logo{
     display:block;
@@ -70,17 +69,65 @@
     flex:0 0 18px;
   }
 
+  .hero-slider{
+    position:relative;
+    width:100%;
+  }
+
+  .hero-track{
+    display:flex;
+    gap:16px;
+    container-type:inline-size;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    overscroll-behavior-inline:contain;
+    touch-action:pan-x pan-y;
+    cursor:grab;
+  }
+
+  .hero-track.is-dragging,
+  .hero-track.is-loop-jump{
+    scroll-behavior:auto;
+    scroll-snap-type:none;
+  }
+
+  .hero-track.is-dragging{
+    cursor:grabbing;
+  }
+
+  .hero-track::-webkit-scrollbar{display:none}
+
   .hero{
     position:relative;
+    flex:0 0 100%;
+    width:100%;
+    height:clamp(40rem,calc(44rem - 10cqw),42rem);
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
     text-align:center;
     overflow:hidden;
     padding:32px 28px 28px;
     border-radius:24px;
     color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    user-select:none;
+    -webkit-user-select:none;
+    will-change:opacity;
     background:
-      linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+      linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,.6) 100%),
       url("../assets/hero-family-v5.webp")
       25% center/cover no-repeat;
+  }
+
+  .hero--aircon{
+    background:
+      linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,.6) 100%),
+      url("../assets/hero-aircon-drilling-v1.webp")
+      50% 60%/cover no-repeat;
   }
 
   .hero::before{
@@ -102,8 +149,8 @@
 
   .hero h1{
     max-width:520px;
-    margin:1lh auto;
-    font-size:clamp(36px,8vw,52px);
+    margin:.75em auto 0;
+    font-size:clamp(2rem,8vw,2.5rem);
     line-height:1.02;
     letter-spacing:-.04em;
   }
@@ -112,7 +159,62 @@
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
     gap:16px;
-    margin-top:32px;
+    margin-top:auto;
+  }
+
+  .hero-controls{
+    position:absolute;
+    top:-40px;
+    left:50%;
+    z-index:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0;
+    transform:translateX(-50%);
+  }
+
+  .hero-pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:0;
+  }
+
+  .hero-dot{
+    display:grid;
+    place-items:center;
+    width:24px;
+    height:24px;
+    padding:0;
+    border:0;
+    border-radius:999px;
+    background:transparent;
+    cursor:pointer;
+  }
+
+  .hero-dot::before{
+    content:"";
+    width:4px;
+    height:4px;
+    border-radius:999px;
+    background:#b7c0cb;
+  }
+
+  .hero-dot.is-active::before{
+    width:8px;
+    height:8px;
+    background:var(--selected);
+  }
+
+  .hero-dot:focus-visible{
+    outline:2px solid var(--muted);
+    outline-offset:-2px;
+  }
+
+  .hero-cta{
+    flex:none;
+    margin-top:20px;
   }
 
   .advantage{
@@ -139,6 +241,7 @@
   }
 
   .calculator{
+    scroll-margin-top:16px;
     padding:24px;
     border-radius:24px;
     background:var(--surface);
@@ -191,6 +294,7 @@
   }
 
   .field{margin-top:24px;}
+  .calculator > .field:first-child{margin-top:0}
 
   .field-title{
     display:block;
@@ -338,6 +442,7 @@
 
   @media (prefers-reduced-motion:reduce){
     .cta::before{animation:none}
+    .hero-track{scroll-behavior:auto}
   }
 
   @media (max-width:520px){
