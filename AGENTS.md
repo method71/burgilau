@@ -23,6 +23,8 @@ spans several listed areas, read each applicable file.
   `.agents/README.md`
 - Performing work that implements or affects the active refactoring plan:
   `.agents/refactoring.md`
+- Changing HTML, CSS/SCSS, or JavaScript that interacts with the DOM:
+  `.agents/frontend-conventions.md`
 - Creating, editing, selecting, or reviewing advertising content or creatives
   for the window air-inlet valve: `.agents/content-matrix.md` (temporary; use
   until the user replaces or withdraws this content matrix).
