@@ -14,10 +14,10 @@
     "lint:js": "eslint .",
     "lint:styles": "stylelint \"src/scss/**/*.scss\"",
     "lint": "npm run lint:js && npm run lint:styles",
-    "test:unit": "node --test tests/unit",
+    "test:unit": "node --test tests/unit/*.test.js",
     "test:e2e": "playwright test",
     "test": "npm run test:unit && npm run test:e2e",
-    "check": "npm run format:check && npm run lint && npm test && npm run build"
+    "check": "npm run format:check && npm run check:tokens && npm run lint && npm test && npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

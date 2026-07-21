@@ -27,7 +27,7 @@
     left: -45%;
     width: 32%;
     pointer-events: none;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    background: linear-gradient(90deg, transparent, var(--color-effect-shine), transparent);
     mix-blend-mode: soft-light;
     transform: skewX(-18deg) translateX(-220%);
     animation: button-shine 5s ease-in-out infinite;

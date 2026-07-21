@@ -27,8 +27,8 @@ build configuration, or when selecting verification for another change.
   isolated Vite server on port 4174. Keep this port separate from the normal
   development server so tests cannot reuse stale application output.
 - `npm test` runs unit and browser tests.
-- `npm run check` is the complete non-visual gate: formatting, both linters,
-  unit and browser tests, and the production build.
+- `npm run check` is the complete non-visual gate: formatting, token and DSDS
+  validation, both linters, unit and browser tests, and the production build.
 
 ## Required checks by change type
 

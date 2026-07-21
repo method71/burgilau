@@ -76,6 +76,17 @@
         },
         {
           "kind": "token-group",
+          "identifier": "font",
+          "tokenType": "fontFamily",
+          "source": "./tokens.json#/font",
+          "description": "Font family tokens used by base typography and form controls.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["tokens", "typography"]
+          }
+        },
+        {
+          "kind": "token-group",
           "identifier": "space",
           "tokenType": "dimension",
           "source": "./tokens.json#/space",
@@ -100,6 +111,17 @@
         },
         {
           "kind": "token-group",
+          "identifier": "size",
+          "tokenType": "dimension",
+          "source": "./tokens.json#/size",
+          "description": "Layout sizing tokens such as the constrained page width.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["tokens", "layout"]
+          }
+        },
+        {
+          "kind": "token-group",
           "identifier": "radius",
           "tokenType": "dimension",
           "source": "./tokens.json#/radius",
@@ -121,12 +143,79 @@
               ]
             }
           ]
+        },
+        {
+          "kind": "token-group",
+          "identifier": "motion",
+          "tokenType": "duration",
+          "source": "./tokens.json#/motion",
+          "description": "Motion tokens for shared UI transition timing.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["tokens", "motion"]
+          }
         }
       ]
     },
     {
       "name": "Components",
       "entities": [
+        {
+          "kind": "component",
+          "identifier": "hero",
+          "name": "Hero Carousel",
+          "description": "Media-backed first-viewport carousel with keyboard navigation, pagination, live status, and a primary CTA.",
+          "metadata": {
+            "status": "stable",
+            "links": [
+              {
+                "label": "Styles",
+                "url": "../src/scss/components/_hero.scss"
+              },
+              {
+                "label": "DOM behavior",
+                "url": "../src/scripts/ui.js"
+              }
+            ],
+            "tags": ["component", "carousel", "media"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Use media overlay, mask, pagination, and text tokens for hero readability and controls instead of hard-coded colors.",
+                  "rationale": "The hero carries photographic assets and needs centralized readable overlay roles.",
+                  "level": "must",
+                  "category": "visual-design"
+                },
+                {
+                  "guidance": "Keep the carousel as one composite Tab stop and expose the active slide through the live status element.",
+                  "rationale": "Keyboard and assistive-technology users need predictable carousel navigation without focus traps.",
+                  "level": "must",
+                  "category": "accessibility"
+                }
+              ]
+            },
+            {
+              "kind": "states",
+              "items": [
+                {
+                  "identifier": "default",
+                  "description": "Active slide is snapped into view with the active CTA tabbable."
+                },
+                {
+                  "identifier": "dragging",
+                  "description": "Temporarily disables smooth scroll and scroll snapping while pointer dragging."
+                },
+                {
+                  "identifier": "focus-visible",
+                  "description": "Shows the shared focus border token around the composite carousel."
+                }
+              ]
+            }
+          ]
+        },
         {
           "kind": "component",
           "identifier": "button",
@@ -216,6 +305,41 @@
                 {
                   "identifier": "focus-visible",
                   "description": "Shows a visible focus indicator through the associated native radio."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "component",
+          "identifier": "company-card",
+          "name": "Company Card",
+          "description": "Linked company information surface with logo, description, and trailing arrow.",
+          "metadata": {
+            "status": "stable",
+            "links": [
+              {
+                "label": "Styles",
+                "url": "../src/scss/components/_company-card.scss"
+              }
+            ],
+            "tags": ["component", "link"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "states",
+              "items": [
+                {
+                  "identifier": "default",
+                  "description": "Uses the default surface background and inherited text color."
+                },
+                {
+                  "identifier": "hover",
+                  "description": "Uses the shared hover surface background token."
+                },
+                {
+                  "identifier": "active",
+                  "description": "Moves down by one pixel to confirm pointer activation."
                 }
               ]
             }

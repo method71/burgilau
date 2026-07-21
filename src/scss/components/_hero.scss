@@ -59,7 +59,12 @@
   padding: var(--space-9) var(--space-8) var(--space-8);
   border-radius: var(--section-radius);
   background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(
+      to bottom,
+      var(--color-overlay-media-scrim) 0%,
+      transparent 60%,
+      var(--color-overlay-media-scrim) 100%
+    ),
     url("../../assets/hero-family-v5.webp") 25% center / cover no-repeat;
   color: var(--color-text-inverse);
   text-align: center;
@@ -71,7 +76,12 @@
 
   &--aircon {
     background:
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%),
+      linear-gradient(
+        to bottom,
+        var(--color-overlay-media-scrim) 0%,
+        transparent 60%,
+        var(--color-overlay-media-scrim) 100%
+      ),
       url("../../assets/hero-aircon-drilling-v1.webp") 50% 60% / cover no-repeat;
   }
 
@@ -83,13 +93,19 @@
     pointer-events: none;
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
-    mask-image: linear-gradient(to bottom, #000 0%, transparent 28%, transparent 72%, #000 100%);
-    -webkit-mask-image: linear-gradient(
+    mask-image: linear-gradient(
       to bottom,
-      #000 0%,
+      var(--color-overlay-media-mask) 0%,
       transparent 28%,
       transparent 72%,
-      #000 100%
+      var(--color-overlay-media-mask) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      var(--color-overlay-media-mask) 0%,
+      transparent 28%,
+      transparent 72%,
+      var(--color-overlay-media-mask) 100%
     );
   }
 
@@ -171,7 +187,7 @@
     width: 4px;
     height: 4px;
     border-radius: 999px;
-    background: #b7c0cb;
+    background: var(--color-control-dot);
   }
 
   &.is-active::before {

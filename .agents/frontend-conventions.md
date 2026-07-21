@@ -35,7 +35,7 @@ interacts with the DOM.
 - When deriving interactive colors with `color-mix()`, declare a custom-property
   fallback immediately before it for browsers that do not support color mixing.
 - Keep normal and interactive text/background combinations at a WCAG AA
-  contrast ratio of at least 4.5:1. Use `--color-focus` for the shared focus
-  indicator and keep it themeable.
+  contrast ratio of at least 4.5:1. Use `--color-border-focus` for the shared
+  focus indicator and keep it themeable.
 - Follow `.agents/validation.md` for automated and visual checks required by
   frontend changes.
