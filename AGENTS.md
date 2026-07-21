@@ -27,8 +27,8 @@ spans several listed areas, read each applicable file.
   `.agents/frontend-conventions.md`
 - Changing JavaScript application structure, pricing, calculator logic, or
   WhatsApp integration: `.agents/javascript-architecture.md`
-- Changing JavaScript application structure, pricing, calculator logic, or
-  WhatsApp integration: `.agents/javascript-architecture.md`
+- Changing dependencies, formatting, linting, tests, build configuration, or
+  validation workflows: `.agents/validation.md`
 - Creating, editing, selecting, or reviewing advertising content or creatives
   for the window air-inlet valve: `.agents/content-matrix.md` (temporary; use
   until the user replaces or withdraws this content matrix).

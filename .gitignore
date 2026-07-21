@@ -19,3 +19,5 @@ Thumbs.db
 # Vite
 node_modules/
 dist/
+playwright-report/
+test-results/

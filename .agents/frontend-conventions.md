@@ -16,3 +16,5 @@ interacts with the DOM.
   properties, such as media-query breakpoints.
 - When deriving interactive colors with `color-mix()`, declare a custom-property
   fallback immediately before it for browsers that do not support color mixing.
+- Follow `.agents/validation.md` for automated and visual checks required by
+  frontend changes.

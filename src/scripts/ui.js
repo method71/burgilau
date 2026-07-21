@@ -1,26 +1,22 @@
 function getSelectedInput(inputs, group) {
-  return inputs.find(input => input.name === group && input.checked);
+  return inputs.find((input) => input.name === group && input.checked);
 }
 
 function getOptionLabel(input) {
-  return input
-    ?.nextElementSibling
-    ?.querySelector("[data-option-label]")
-    ?.textContent
-    .trim() ?? "";
+  return input?.nextElementSibling?.querySelector("[data-option-label]")?.textContent.trim() ?? "";
 }
 
 export function createCalculatorUi() {
   const inputs = [...document.querySelectorAll("[data-calc-input]")];
   const priceElement = document.querySelector("[data-price]");
   const whatsappLink = document.querySelector("[data-whatsapp]");
-  const groups = [...new Set(inputs.map(input => input.name))];
+  const groups = [...new Set(inputs.map((input) => input.name))];
 
   function readState() {
     const selections = {};
     const labels = {};
 
-    groups.forEach(group => {
+    groups.forEach((group) => {
       const input = getSelectedInput(inputs, group);
       selections[group] = input?.value ?? "";
       labels[group] = getOptionLabel(input);
@@ -35,14 +31,14 @@ export function createCalculatorUi() {
   }
 
   function onChange(handler) {
-    inputs.forEach(input => input.addEventListener("change", handler));
+    inputs.forEach((input) => input.addEventListener("change", handler));
   }
 
   return { onChange, readState, render };
 }
 
 export function initCompanyCard() {
-  document.querySelector("[data-company-card]")?.addEventListener("click", event => {
+  document.querySelector("[data-company-card]")?.addEventListener("click", (event) => {
     event.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
@@ -62,10 +58,10 @@ export function initHeroSlider() {
   const firstClone = heroSlides[0].cloneNode(true);
   const lastClone = heroSlides[heroSlides.length - 1].cloneNode(true);
 
-  [firstClone, lastClone].forEach(clone => {
+  [firstClone, lastClone].forEach((clone) => {
     clone.dataset.loopClone = "true";
     clone.setAttribute("aria-hidden", "true");
-    clone.querySelectorAll("a,button,input").forEach(element => {
+    clone.querySelectorAll("a,button,input").forEach((element) => {
       element.tabIndex = -1;
     });
   });
@@ -89,7 +85,7 @@ export function initHeroSlider() {
     const trackRect = heroTrack.getBoundingClientRect();
     const trackCenter = trackRect.left + trackRect.width / 2;
 
-    renderedHeroSlides.forEach(slide => {
+    renderedHeroSlides.forEach((slide) => {
       const slideRect = slide.getBoundingClientRect();
       const slideCenter = slideRect.left + slideRect.width / 2;
       const distance = Math.min(Math.abs(slideCenter - trackCenter) / slideRect.width, 1);
@@ -116,7 +112,11 @@ export function initHeroSlider() {
 
   function goToHeroSlide(index) {
     const targetIndex = (index + heroSlides.length) % heroSlides.length;
-    heroSlides[targetIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    heroSlides[targetIndex].scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
     updateHeroControls(targetIndex);
   }
 
@@ -124,8 +124,8 @@ export function initHeroSlider() {
     dot.addEventListener("click", () => goToHeroSlide(index));
   });
 
-  renderedHeroSlides.forEach(slide => {
-    slide.querySelector("[data-hero-cta]")?.addEventListener("click", event => {
+  renderedHeroSlides.forEach((slide) => {
+    slide.querySelector("[data-hero-cta]")?.addEventListener("click", (event) => {
       event.preventDefault();
       nextSection?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -165,7 +165,7 @@ export function initHeroSlider() {
     requestAnimationFrame(() => heroTrack.classList.remove("is-loop-jump"));
   }
 
-  heroTrack.addEventListener("pointerdown", event => {
+  heroTrack.addEventListener("pointerdown", (event) => {
     pointerIgnored = Boolean(event.target.closest("[data-hero-cta]"));
     if (pointerIgnored) return;
 
@@ -181,7 +181,7 @@ export function initHeroSlider() {
     heroTrack.setPointerCapture(event.pointerId);
   });
 
-  heroTrack.addEventListener("pointermove", event => {
+  heroTrack.addEventListener("pointermove", (event) => {
     if (!heroTrack.classList.contains("is-dragging")) return;
 
     const distance = event.clientX - dragStartX;
@@ -203,14 +203,18 @@ export function initHeroSlider() {
 
     if (heroTrack.classList.contains("is-dragging")) {
       heroTrack.classList.remove("is-dragging");
-      if (heroTrack.hasPointerCapture(event.pointerId)) heroTrack.releasePointerCapture(event.pointerId);
+      if (heroTrack.hasPointerCapture(event.pointerId))
+        heroTrack.releasePointerCapture(event.pointerId);
     }
 
     if (dragMoved || changedBySwipe) suppressClickUntil = Date.now() + 250;
 
     if (changedBySwipe) {
       const direction = swipeDistance < 0 ? 1 : -1;
-      const targetIndex = Math.max(0, Math.min(dragStartSlide + direction, renderedHeroSlides.length - 1));
+      const targetIndex = Math.max(
+        0,
+        Math.min(dragStartSlide + direction, renderedHeroSlides.length - 1),
+      );
       scrollToRenderedSlide(renderedHeroSlides[targetIndex]);
     } else if (dragMoved) {
       scrollToRenderedSlide(nearestHeroSlide());
@@ -218,28 +222,39 @@ export function initHeroSlider() {
   }
 
   heroTrack.addEventListener("pointerup", finishHeroDrag);
-  heroTrack.addEventListener("pointercancel", event => finishHeroDrag(event, true));
-  heroTrack.addEventListener("click", event => {
-    if (Date.now() > suppressClickUntil) return;
-    event.preventDefault();
-    event.stopPropagation();
-  }, true);
-  heroTrack.addEventListener("scroll", () => {
-    requestHeroFadeUpdate();
-    clearTimeout(loopTimer);
-    loopTimer = setTimeout(normalizeHeroLoop, 140);
-  }, { passive: true });
+  heroTrack.addEventListener("pointercancel", (event) => finishHeroDrag(event, true));
+  heroTrack.addEventListener(
+    "click",
+    (event) => {
+      if (Date.now() > suppressClickUntil) return;
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    true,
+  );
+  heroTrack.addEventListener(
+    "scroll",
+    () => {
+      requestHeroFadeUpdate();
+      clearTimeout(loopTimer);
+      loopTimer = setTimeout(normalizeHeroLoop, 140);
+    },
+    { passive: true },
+  );
   window.addEventListener("resize", requestHeroFadeUpdate);
 
-  const heroObserver = new IntersectionObserver(entries => {
-    const visibleSlide = entries
-      .filter(entry => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  const heroObserver = new IntersectionObserver(
+    (entries) => {
+      const visibleSlide = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-    if (visibleSlide) updateHeroControls(Number(visibleSlide.target.dataset.slideIndex));
-  }, { root: heroTrack, threshold: [0.55, 0.75, 0.95] });
+      if (visibleSlide) updateHeroControls(Number(visibleSlide.target.dataset.slideIndex));
+    },
+    { root: heroTrack, threshold: [0.55, 0.75, 0.95] },
+  );
 
-  renderedHeroSlides.forEach(slide => heroObserver.observe(slide));
+  renderedHeroSlides.forEach((slide) => heroObserver.observe(slide));
   heroTrack.classList.add("is-loop-jump");
   heroTrack.scrollLeft = heroSlides[0].offsetLeft;
   requestAnimationFrame(() => heroTrack.classList.remove("is-loop-jump"));

@@ -30,9 +30,10 @@ behavior, or WhatsApp integration.
 
 ## Verification
 
-- For pricing changes, verify every supported option combination and confirm
-  that an unknown option is rejected rather than silently priced.
-- For WhatsApp changes, parse the generated URL and verify the phone and the
-  decoded Cyrillic message through `searchParams`.
-- For UI changes, run the production build and exercise calculator updates,
-  hero controls, and the generated WhatsApp link in a browser.
+- Keep `tests/unit/calculator.test.js` synchronized with every supported price
+  combination and confirm that unknown options are rejected.
+- Keep `tests/unit/whatsapp.test.js` synchronized with the message contract;
+  parse URLs and verify phone and decoded Cyrillic text through `searchParams`.
+- Keep `tests/e2e/app.spec.js` focused on the main local user flow: calculator
+  updates, the generated WhatsApp link, hero controls, and browser errors.
+- Follow `.agents/validation.md` for the commands required by the change.
