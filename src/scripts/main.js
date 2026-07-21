@@ -1,19 +1,15 @@
-const priceElement = document.getElementById("price");
-  const whatsappLink = document.getElementById("whatsapp");
-
-  document.querySelectorAll('input[id$="-unknown"]').forEach(input => {
-    input.closest(".option")?.remove();
-  });
+const priceElement = document.querySelector("[data-price]");
+  const whatsappLink = document.querySelector("[data-whatsapp]");
 
   function selectedValue(name) {
-    const input = document.querySelector(`input[name="${name}"]:checked`);
+    const input = document.querySelector(`[data-calc-input][name="${name}"]:checked`);
     return input ? Number(input.value) : 0;
   }
 
   function selectedText(name) {
-    const input = document.querySelector(`input[name="${name}"]:checked`);
+    const input = document.querySelector(`[data-calc-input][name="${name}"]:checked`);
     if (!input) return "";
-    const label = document.querySelector(`label[for="${input.id}"]`);
+    const label = input.nextElementSibling;
     return label ? label.firstElementChild?.textContent.trim() || label.textContent.trim() : "";
   }
 
@@ -38,20 +34,20 @@ const priceElement = document.getElementById("price");
     whatsappLink.href = `https://api.whatsapp.com/send?phone=77788833329&text=${message}`;
   }
 
-  document.querySelectorAll('input[type="radio"]').forEach(input => {
+  document.querySelectorAll("[data-calc-input]").forEach(input => {
     input.addEventListener("change", updateCalculator);
   });
 
   updateCalculator();
 
-  document.querySelector(".master")?.addEventListener("click", event => {
+  document.querySelector("[data-company-card]")?.addEventListener("click", event => {
     event.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  const heroTrack = document.querySelector(".hero-track");
-  const heroSlides = [...document.querySelectorAll(".hero")];
-  const heroDots = [...document.querySelectorAll(".hero-dot")];
+  const heroTrack = document.querySelector("[data-hero-track]");
+  const heroSlides = [...document.querySelectorAll("[data-hero-slide]")];
+  const heroDots = [...document.querySelectorAll("[data-hero-dot]")];
 
   if (heroTrack && heroSlides.length) {
     heroSlides.forEach((slide, index) => slide.dataset.slideIndex = index);
@@ -66,8 +62,8 @@ const priceElement = document.getElementById("price");
     heroTrack.prepend(lastClone);
     heroTrack.append(firstClone);
 
-    const renderedHeroSlides = [...heroTrack.querySelectorAll(".hero")];
-    const nextSection = heroTrack.closest(".hero-slider")?.nextElementSibling;
+    const renderedHeroSlides = [...heroTrack.querySelectorAll("[data-hero-slide]")];
+    const nextSection = document.querySelector("[data-calculator]");
     let dragStartX = 0;
     let dragStartScroll = 0;
     let dragMoved = false;
@@ -114,7 +110,7 @@ const priceElement = document.getElementById("price");
 
     heroDots.forEach((dot, index) => dot.addEventListener("click", () => goToHeroSlide(index)));
     renderedHeroSlides.forEach(slide => {
-      slide.querySelector(".hero-cta")?.addEventListener("click", event => {
+      slide.querySelector("[data-hero-cta]")?.addEventListener("click", event => {
         event.preventDefault();
         nextSection?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
@@ -152,7 +148,7 @@ const priceElement = document.getElementById("price");
     }
 
     heroTrack.addEventListener("pointerdown", event => {
-      pointerIgnored = Boolean(event.target.closest(".hero-cta"));
+      pointerIgnored = Boolean(event.target.closest("[data-hero-cta]"));
       if (pointerIgnored) return;
       pointerActive = true;
       dragStartX = event.clientX;

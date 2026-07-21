@@ -29,7 +29,7 @@
     gap:1rem;
   }
 
-  .site-header{
+  .header{
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -38,8 +38,8 @@
     min-height:24px;
   }
 
-  .site-brand,
-  .site-location{
+  .header__brand,
+  .header__location{
     display:flex;
     align-items:center;
     gap:8px;
@@ -49,7 +49,7 @@
     line-height:1.2;
   }
 
-  .site-logo{
+  .header__logo{
     display:block;
     width:20px;
     height:20px;
@@ -58,23 +58,23 @@
     object-fit:cover;
   }
 
-  .site-location{
+  .header__location{
     color:var(--muted);
     white-space:nowrap;
   }
 
-  .site-location-icon{
+  .header__location-icon{
     width:18px;
     height:18px;
     flex:0 0 18px;
   }
 
-  .hero-slider{
+  .hero{
     position:relative;
     width:100%;
   }
 
-  .hero-track{
+  .hero__track{
     display:flex;
     gap:16px;
     container-type:inline-size;
@@ -87,19 +87,19 @@
     cursor:grab;
   }
 
-  .hero-track.is-dragging,
-  .hero-track.is-loop-jump{
+  .hero__track.is-dragging,
+  .hero__track.is-loop-jump{
     scroll-behavior:auto;
     scroll-snap-type:none;
   }
 
-  .hero-track.is-dragging{
+  .hero__track.is-dragging{
     cursor:grabbing;
   }
 
-  .hero-track::-webkit-scrollbar{display:none}
+  .hero__track::-webkit-scrollbar{display:none}
 
-  .hero{
+  .hero__slide{
     position:relative;
     flex:0 0 100%;
     width:100%;
@@ -123,14 +123,14 @@
       25% center/cover no-repeat;
   }
 
-  .hero--aircon{
+  .hero__slide--aircon{
     background:
       linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,.6) 100%),
       url("../assets/hero-aircon-drilling-v1.webp")
       50% 60%/cover no-repeat;
   }
 
-  .hero::before{
+  .hero__slide::before{
     content:"";
     position:absolute;
     inset:0;
@@ -142,12 +142,12 @@
     -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 28%,transparent 72%,#000 100%);
   }
 
-  .hero > *{
+  .hero__slide > *{
     position:relative;
     z-index:1;
   }
 
-  .hero h1{
+  .hero__slide h1{
     max-width:520px;
     margin:.75em auto 0;
     font-size:clamp(2rem,8vw,2.5rem);
@@ -155,14 +155,14 @@
     letter-spacing:-.04em;
   }
 
-  .advantages{
+  .hero__advantages{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
     gap:16px;
     margin-top:auto;
   }
 
-  .hero-controls{
+  .hero__controls{
     position:absolute;
     top:-40px;
     left:50%;
@@ -174,14 +174,14 @@
     transform:translateX(-50%);
   }
 
-  .hero-pagination{
+  .hero__pagination{
     display:flex;
     justify-content:center;
     align-items:center;
     gap:0;
   }
 
-  .hero-dot{
+  .hero__dot{
     display:grid;
     place-items:center;
     width:24px;
@@ -193,7 +193,7 @@
     cursor:pointer;
   }
 
-  .hero-dot::before{
+  .hero__dot::before{
     content:"";
     width:4px;
     height:4px;
@@ -201,23 +201,23 @@
     background:#b7c0cb;
   }
 
-  .hero-dot.is-active::before{
+  .hero__dot.is-active::before{
     width:8px;
     height:8px;
     background:var(--selected);
   }
 
-  .hero-dot:focus-visible{
+  .hero__dot:focus-visible{
     outline:2px solid var(--muted);
     outline-offset:-2px;
   }
 
-  .hero-cta{
+  .hero__cta{
     flex:none;
     margin-top:20px;
   }
 
-  .advantage{
+  .hero__advantage{
     color:rgba(255,255,255,.8);
     min-width:0;
     display:flex;
@@ -228,7 +228,7 @@
     line-height:1.35;
   }
 
-  .advantage-icon{
+  .hero__advantage-icon{
     display:block;
     width:28px;
     height:28px;
@@ -240,14 +240,14 @@
     stroke-linejoin:round;
   }
 
-  .calculator{
+  .calc{
     scroll-margin-top:16px;
     padding:24px;
     border-radius:24px;
     background:var(--surface);
   }
 
-  .calculator-header{
+  .calc__header{
     display:flex;
     align-items:flex-start;
     justify-content:center;
@@ -256,7 +256,7 @@
     border-bottom:1px solid var(--line);
   }
 
-  .eyebrow{
+  .hero__eyebrow{
     margin:0 0 6px;
     color:var(--muted);
     font-size:13px;
@@ -265,7 +265,7 @@
     letter-spacing:.06em;
   }
 
-  .calculator h2{
+  .calc h2{
     margin:0;
     font-size:28px;
     line-height:1.15;
@@ -293,40 +293,40 @@
     letter-spacing:-.03em;
   }
 
-  .field{margin-top:24px;}
-  .calculator > .field:first-child{margin-top:0}
+  .calc__field{margin-top:24px;}
+  .calc > .calc__field:first-child{margin-top:0}
 
-  .field-title{
+  .calc__field-title{
     display:block;
     margin-bottom:12px;
     font-size:16px;
     font-weight:600;
   }
 
-  .options{
+  .calc__options{
     display:grid;
     gap:10px;
   }
 
-  .options.services{
+  .calc__options.services{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
-  .options.compact{
+  .calc__options.compact{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
-  .option{
+  .option-card{
     position:relative;
   }
 
-  .option input{
+  .option-card input{
     position:absolute;
     opacity:0;
     pointer-events:none;
   }
 
-  .option label{text-align:center;
+  .option-card label{text-align:center;
     display:flex;
     min-height:52px;
     align-items:center;
@@ -340,28 +340,28 @@
     transition:border-color .15s,background .15s,color .15s;
   }
 
-  .option label:hover{
+  .option-card label:hover{
     border-color:#aab2bd;
   }
 
-  .option input:checked + label{
+  .option-card input:checked + label{
     border-color:var(--selected);
     background:var(--selected);
     
   }
 
-  .option-price{
+  .option-card__price{
     display:none;
     color:var(--muted);
     font-size:13px;
     white-space:nowrap;
   }
 
-  .option input:checked + label .option-price{
+  .option-card input:checked + label .option-card__price{
     color:rgba(255,255,255,.7);
   }
 
-  .note{
+  .estimate__note{
     text-wrap:balance;
     margin:20px 0 0;
     color:var(--muted);
@@ -369,7 +369,7 @@
     line-height:1.45;
   }
 
-  .cta{
+  .button{
     position:relative;
     isolation:isolate;
     overflow:hidden;
@@ -391,7 +391,7 @@
     transition:background .15s,transform .15s;
   }
 
-  .cta::before{
+  .button::before{
     content:"";
     position:absolute;
     z-index:0;
@@ -411,15 +411,15 @@
     18%,100%{transform:skewX(-18deg) translateX(620%)}
   }
 
-  .cta:hover{
+  .button:hover{
     background:var(--accent-hover);
   }
 
-  .cta:active{
+  .button:active{
     transform:translateY(1px);
   }
 
-  .cta img{
+  .button img{
     position:relative;
     z-index:1;
     width:22px;
@@ -427,7 +427,7 @@
     fill:currentColor;
   }
 
-  .cta-icon{
+  .calc__submit-icon{
     position:relative;
     z-index:1;
     width:22px;
@@ -435,32 +435,32 @@
     flex:0 0 22px;
   }
 
-  .cta span{
+  .button span{
     position:relative;
     z-index:1;
   }
 
   @media (prefers-reduced-motion:reduce){
-    .cta::before{animation:none}
-    .hero-track{scroll-behavior:auto}
+    .button::before{animation:none}
+    .hero__track{scroll-behavior:auto}
   }
 
   @media (max-width:520px){
     body{padding:0}
-    .hero{padding:26px 20px 22px}
-    .advantages{gap:10px}
-    .advantage{font-size:12px}
-    .calculator{padding:20px}
-    .calculator-header{display:block}
+    .hero__slide{padding:26px 20px 22px}
+    .hero__advantages{gap:10px}
+    .hero__advantage{font-size:12px}
+    .calc{padding:20px}
+    .calc__header{display:block}
     .price{text-align:left;margin-top:18px}
   }
 
   h1,h2,h3,h4,h5,h6,
-  .field-title,
+  .calc__field-title,
   .price-value,
   .price-label,
-  .eyebrow,
-  .cta,
+  .hero__eyebrow,
+  .button,
   strong{
     font-family:"Inter",Arial,sans-serif;
     font-weight:600;
@@ -468,22 +468,22 @@
 
   body,
   p,
-  .note,
-  .advantage,
-  .option-price{
+  .estimate__note,
+  .hero__advantage,
+  .option-card__price{
     font-family:"Inter",Arial,sans-serif;
     font-weight:400;
   }
 
 
-  .option label{
+  .option-card label{
     font-family:"Inter",Arial,sans-serif;
     font-weight:400;
   }
 
 
-.option{display:flex}
-.option label{
+.option-card{display:flex}
+.option-card label{
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -497,8 +497,8 @@ border-radius:20px;
 padding:16px;
 box-sizing:border-box;
 }
-.option::before{content:none}
-.option label::before{
+.option-card::before{content:none}
+.option-card label::before{
 content:"";
 width:3rem;
 height:3rem;
@@ -507,11 +507,11 @@ background:#EEF2F6;
 margin-bottom:12px;
 flex:0 0 3rem;
 }
-.option input:checked + label{
+.option-card input:checked + label{
 background:#F3F5F7;
 border:2px solid #000;
 }
-.option input:checked + label::after{
+.option-card input:checked + label::after{
 content:none;
 position:absolute;
 top:10px;
@@ -528,7 +528,7 @@ justify-content:center;
 font-weight:600;
 }
 
-.option-check{
+.option-card__check{
   position:absolute;
   top:10px;
   right:10px;
@@ -539,11 +539,11 @@ font-weight:600;
   fill:currentColor;
 }
 
-.option input:checked + label .option-check{display:block}
+.option-card input:checked + label .option-card__check{display:block}
 
 
-  .options,
-  .options.compact{
+  .calc__options,
+  .calc__options.compact{
     display:grid;
     grid-auto-flow:column;
     grid-auto-columns:minmax(0,1fr);
@@ -552,21 +552,21 @@ font-weight:600;
   }
 
   @media (max-width:520px){
-    .options,
-    .options.compact{
+    .calc__options,
+    .calc__options.compact{
       grid-auto-flow:row;
       grid-auto-columns:auto;
       grid-template-columns:repeat(2,minmax(0,1fr));
     }
   }
 
-  .option input:checked + label{
+  .option-card input:checked + label{
     color:var(--text);
   }
 
 
-.options,
-.options.compact{
+.calc__options,
+.calc__options.compact{
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:1fr;
@@ -574,18 +574,18 @@ font-weight:600;
   align-items:stretch;
 }
 
-.option{
+.option-card{
   width:100%;
 }
 
-.option label{
+.option-card label{
   width:100%;
   box-sizing:border-box;
 }
 
 @media (max-width:520px){
-  .options,
-  .options.compact{
+  .calc__options,
+  .calc__options.compact{
     grid-auto-flow:row;
     grid-template-columns:repeat(2,minmax(0,1fr));
     grid-auto-columns:auto;
@@ -593,7 +593,7 @@ font-weight:600;
 }
 
 
-  .master{
+  .company-card{
     display:flex;
     align-items:center;
     gap:16px;
@@ -605,15 +605,15 @@ font-weight:600;
     transition:background .15s,transform .15s;
   }
 
-  .master:hover{
+  .company-card:hover{
     background:#f8fafc;
   }
 
-  .master:active{
+  .company-card:active{
     transform:translateY(1px);
   }
 
-  .master-photo{
+  .company-card__logo{
     width:72px;
     height:72px;
     flex:0 0 72px;
@@ -622,28 +622,28 @@ font-weight:600;
     background:#000;
   }
 
-  .master-photo img{
+  .company-card__logo img{
     display:block;
     width:100%;
     height:100%;
     object-fit:cover;
   }
 
-  .master-name{
+  .company-card__name{
     margin:0;
     font-size:22px;
     line-height:1.15;
     letter-spacing:-.02em;
   }
 
-  .master-role{
+  .company-card__description{
     margin:5px 0 0;
     color:var(--muted);
     font-size:14px;
     line-height:1.4;
   }
 
-  .master-arrow{
+  .company-card__arrow{
     width:20px;
     height:20px;
     margin-left:auto;
@@ -656,12 +656,12 @@ font-weight:600;
   }
 
 
-.option label::before{
+.option-card label::before{
   content:none !important;
   display:none !important;
 }
 
-.option-icon{
+.option-card__icon{
   display:block;
   width:72px;
   height:72px;
@@ -671,23 +671,23 @@ font-weight:600;
 }
 
 /* Keep every choice group in a single three-column row on all screen sizes. */
-.options,
-.options.compact,
-.options.services{
+.calc__options,
+.calc__options.compact,
+.calc__options.services{
   grid-auto-flow:row;
   grid-auto-columns:auto;
   grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-.option label{
+.option-card label{
   min-width:0;
   padding-inline:8px;
   font-size:clamp(12px,3.5vw,16px);
 }
 
-.tabler-icon{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icon{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-.hero-eyebrow{
+.hero__eyebrow{
   color:rgba(255,255,255,.8);
   margin-bottom:1.5lh;
 }
@@ -699,10 +699,10 @@ font-weight:600;
   text-align:center;
 }
 
-.estimate-price{
+.estimate__price{
   font-size:34px;
   font-weight:600;
   letter-spacing:-.03em;
 }
 
-.estimate-note{margin-top:8px}
+.estimate__note{margin-top:8px}
