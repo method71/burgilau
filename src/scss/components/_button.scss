@@ -34,7 +34,8 @@
   }
 
   &:hover {
-    background: var(--color-accent)-hover;
+    background: var(--color-accent-hover);
+    background: color-mix(in srgb, var(--color-accent), white 12%);
   }
 
   &:active {
