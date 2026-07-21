@@ -25,6 +25,10 @@ interacts with the DOM.
   duplicating that state in JavaScript.
 - When a native radio is visually hidden, expose its `:focus` state on the
   associated visible label so keyboard focus is never lost.
+- Treat the hero carousel as one composite Tab stop. Keep pagination dots out
+  of sequential focus, switch slides with arrow/Home/End keys when the carousel
+  itself is focused, keep only the active slide CTA tabbable, and announce the
+  active slide through a polite live region.
 - Define themeable design tokens as CSS custom properties in
   `src/scss/abstracts/_variables.scss` and consume them with `var(...)`.
   Reserve Sass variables for compile-time constructs that cannot use custom

@@ -6,14 +6,18 @@ export function initCompanyCard() {
 }
 
 export function initHeroSlider() {
+  const hero = document.querySelector("[data-hero]");
   const heroTrack = document.querySelector("[data-hero-track]");
   const heroSlides = [...document.querySelectorAll("[data-hero-slide]")];
   const heroDots = [...document.querySelectorAll("[data-hero-dot]")];
+  const heroStatus = document.querySelector("[data-hero-status]");
 
-  if (!heroTrack || !heroSlides.length) return;
+  if (!hero || !heroTrack || !heroSlides.length) return;
 
   heroSlides.forEach((slide, index) => {
     slide.dataset.slideIndex = index;
+    slide.setAttribute("role", "group");
+    slide.setAttribute("aria-roledescription", "слайд");
   });
 
   const firstClone = heroSlides[0].cloneNode(true);
@@ -41,6 +45,7 @@ export function initHeroSlider() {
   let pointerActive = false;
   let pointerIgnored = false;
   let dragStartSlide = 0;
+  let currentSlideIndex = 0;
 
   function updateHeroFade() {
     const trackRect = heroTrack.getBoundingClientRect();
@@ -62,13 +67,25 @@ export function initHeroSlider() {
   }
 
   function updateHeroControls(index) {
+    currentSlideIndex = index;
     heroDots.forEach((dot, dotIndex) => {
       const isActive = dotIndex === index;
       dot.classList.toggle("is-active", isActive);
+      dot.tabIndex = -1;
 
       if (isActive) dot.setAttribute("aria-current", "true");
       else dot.removeAttribute("aria-current");
     });
+
+    heroSlides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === index;
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.querySelectorAll("a,button,input").forEach((element) => {
+        element.tabIndex = isActive ? 0 : -1;
+      });
+    });
+
+    if (heroStatus) heroStatus.textContent = `Предложение ${index + 1} из ${heroSlides.length}`;
   }
 
   function goToHeroSlide(index) {
@@ -83,6 +100,20 @@ export function initHeroSlider() {
 
   heroDots.forEach((dot, index) => {
     dot.addEventListener("click", () => goToHeroSlide(index));
+  });
+
+  hero.addEventListener("keydown", (event) => {
+    if (event.target !== hero) return;
+
+    let targetIndex;
+    if (event.key === "ArrowLeft") targetIndex = currentSlideIndex - 1;
+    else if (event.key === "ArrowRight") targetIndex = currentSlideIndex + 1;
+    else if (event.key === "Home") targetIndex = 0;
+    else if (event.key === "End") targetIndex = heroSlides.length - 1;
+    else return;
+
+    event.preventDefault();
+    goToHeroSlide(targetIndex);
   });
 
   renderedHeroSlides.forEach((slide) => {

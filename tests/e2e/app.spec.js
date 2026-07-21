@@ -34,6 +34,38 @@ test("updates the estimate, WhatsApp link, and hero controls", async ({ page }) 
   const price = page.locator("[data-price]");
   const whatsappLink = page.locator("[data-whatsapp]");
   const secondHeroDot = page.locator("[data-hero-dot]").nth(1);
+  const hero = page.locator("[data-hero]");
+  const realHeroCtas = page.locator("[data-hero-slide]:not([data-loop-clone]) [data-hero-cta]");
+
+  const heroDotTabIndexes = await page
+    .locator("[data-hero-dot]")
+    .evaluateAll((dots) => dots.map((dot) => dot.getAttribute("tabindex")));
+  expect(heroDotTabIndexes).toEqual(["-1", "-1"]);
+  await expect(realHeroCtas.nth(0)).toHaveAttribute("tabindex", "0");
+  await expect(realHeroCtas.nth(1)).toHaveAttribute("tabindex", "-1");
+
+  await hero.focus();
+  await expect(hero).toBeFocused();
+  const focusedHeroOutline = await hero.evaluate((element) => {
+    const style = element.ownerDocument.defaultView.getComputedStyle(element);
+    return { style: style.outlineStyle, width: style.outlineWidth };
+  });
+  expect(focusedHeroOutline.style).not.toBe("none");
+  expect(focusedHeroOutline.width).not.toBe("0px");
+  await hero.press("ArrowRight");
+  await expect(secondHeroDot).toHaveAttribute("aria-current", "true");
+  await expect(page.locator("[data-hero-status]")).toHaveText("Предложение 2 из 2");
+  await expect(realHeroCtas.nth(0)).toHaveAttribute("tabindex", "-1");
+  await expect(realHeroCtas.nth(1)).toHaveAttribute("tabindex", "0");
+
+  await hero.press("Home");
+  await expect(page.locator("[data-hero-dot]").nth(0)).toHaveAttribute("aria-current", "true");
+  await hero.press("End");
+  await expect(secondHeroDot).toHaveAttribute("aria-current", "true");
+  await hero.press("ArrowLeft");
+  await expect(page.locator("[data-hero-dot]").nth(0)).toHaveAttribute("aria-current", "true");
+  await hero.press("Tab");
+  await expect(realHeroCtas.nth(0)).toBeFocused();
 
   await expect(page.locator("[data-calculator-fields] .calc__field")).toHaveCount(2);
   await expect(page.locator("[data-calc-input]")).toHaveCount(6);

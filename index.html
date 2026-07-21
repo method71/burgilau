@@ -21,7 +21,8 @@
       <span>г. Астана</span>
     </div>
   </header>
-  <section class="hero" aria-label="Специальные предложения">
+  <section class="hero" data-hero tabindex="0" aria-label="Специальные предложения" aria-roledescription="карусель">
+    <span class="hero__status" data-hero-status role="status" aria-live="polite" aria-atomic="true"></span>
     <div class="hero__controls">
       <div class="hero__pagination" aria-label="Выбор предложения">
         <button data-hero-dot class="hero__dot is-active" type="button" aria-label="Предложение 1" aria-current="true"></button>
