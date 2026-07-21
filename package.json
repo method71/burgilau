@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build:tokens": "node scripts/design-system-tokens.js build",
+    "check:tokens": "node scripts/design-system-tokens.js check",
     "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write .",

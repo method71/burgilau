@@ -1,29 +1,29 @@
+/* Generated from design-system/tokens.json. Do not edit token values here. */
 :root {
-  --font-family: "Inter", Arial, sans-serif;
+  --font-family: Inter, Arial, sans-serif;
 
-  --color-page: #eef2f6;
-  --color-surface: #fff;
-  --color-text: #111318;
-  --color-muted: #667085;
-  --color-line: #e4e7ec;
-  --color-card-line: #e3e7ec;
-  --color-card-hover: #aab2bd;
-  --color-card-selected: #f3f5f7;
-  --color-focus: #2563eb;
-  --color-accent: #25d366;
-  --color-accent-hover: #32d76f;
-  --color-on-accent: #111318;
-  --color-company-hover: #f8fafc;
+  --color-background-page: #eef2f6;
+  --color-background-surface: #fff;
+  --color-background-surface-hover: #f8fafc;
+  --color-background-surface-selected: #f3f5f7;
+  --color-background-accent: #25d366;
+  --color-background-accent-hover: #32d76f;
+  --color-text-primary: #111318;
+  --color-text-secondary: #667085;
+  --color-text-inverse: #fff;
+  --color-text-on-accent: #111318;
+  --color-text-on-media: rgba(255, 255, 255, 0.8);
+  --color-border-base: #e4e7ec;
+  --color-border-subtle: #e3e7ec;
+  --color-border-hover: #aab2bd;
+  --color-border-selected: #111318;
+  --color-border-focus: #2563eb;
+  --color-border-accent: #25d366;
+  --color-background-focus: #eff6ff;
+  --color-icon-primary: #111318;
   --color-icon-muted: #98a2b3;
-  --color-hero-content: rgba(255, 255, 255, 0.8);
 
   --page-max-width: 620px;
-  --page-gap: 1rem;
-  --page-inline-padding: clamp(0.5rem, 3vw, 1.5rem);
-  --section-radius: 24px;
-  --card-radius: 20px;
-  --button-radius: 16px;
-
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 10px;
@@ -33,6 +33,12 @@
   --space-7: 24px;
   --space-8: 28px;
   --space-9: 32px;
+  --page-gap: 1rem;
+  --page-inline-padding: clamp(0.5rem, 3vw, 1.5rem);
+
+  --section-radius: 24px;
+  --card-radius: 20px;
+  --button-radius: 16px;
 
   --transition-fast: 0.15s;
 }
