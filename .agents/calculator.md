@@ -1,7 +1,8 @@
-# JavaScript Architecture
+# Calculator
 
-Apply these rules when changing application JavaScript, pricing, calculator
-behavior, calculator assets, services, or WhatsApp integration.
+Apply these rules when changing calculator configuration, pricing, parameters,
+options, assets, services, schema, generated controls, calculation behavior, or
+WhatsApp message and URL generation.
 
 ## Calculator model
 
@@ -47,6 +48,8 @@ behavior, calculator assets, services, or WhatsApp integration.
 
 - HTML provides calculator hosts and output elements, not hard-coded parameter
   groups or options. Render fields into `[data-calculator-fields]`.
+- Build configuration-driven controls with DOM APIs and `textContent`; do not
+  interpolate configuration values through `innerHTML`.
 - Treat service, parameter, and option ids as stable data contracts. Text labels
   are presentation and message content, not lookup keys.
 - Scope DOM queries to the calculator root so multiple calculators can coexist

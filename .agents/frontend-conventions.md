@@ -5,10 +5,8 @@ interacts with the DOM.
 
 ## Project naming
 
-- Use the BEM blocks `header`, `hero`, `calc`, `option-card`, `estimate`, and
-  `company-card` for the existing page components.
-- Keep the established short names `header` and `calc`; do not reintroduce
-  `site-header` or `calculator` prefixes.
+- Preserve the established `header` and `calc` BEM block names; do not rename
+  them to `site-header` or `calculator`.
 
 ## DOM and styling
 
@@ -18,8 +16,6 @@ interacts with the DOM.
   classes.
 - Scope component queries to their root element so repeated component instances
   do not share controls or output state.
-- Build configuration-driven calculator controls with DOM APIs and
-  `textContent`; do not interpolate configuration values through `innerHTML`.
 - Name classes for JavaScript-managed states with the `is-*` prefix.
 - Prefer the native `:checked` selector for radio-button states instead of
   duplicating that state in JavaScript.
@@ -29,10 +25,13 @@ interacts with the DOM.
   of sequential focus, switch slides with arrow/Home/End keys when the carousel
   itself is focused, keep only the active slide CTA tabbable, and announce the
   active slide through a polite live region.
-- Define themeable design tokens as CSS custom properties in
-  `src/scss/abstracts/_variables.scss` and consume them with `var(...)`.
-  Reserve Sass variables for compile-time constructs that cannot use custom
-  properties, such as media-query breakpoints.
+- Define themeable design token values in `design-system/tokens.json`; it is
+  the source of truth. Generate `src/scss/abstracts/_variables.scss` with
+  `npm run build:tokens` and consume the resulting custom properties with
+  `var(...)`. Reserve Sass variables for compile-time constructs that cannot
+  use custom properties, such as media-query breakpoints.
+- Treat `design-system/*.dsds.json` as the machine-readable design contract for
+  component usage, states, accessibility, and token guidance.
 - When deriving interactive colors with `color-mix()`, declare a custom-property
   fallback immediately before it for browsers that do not support color mixing.
 - Keep normal and interactive text/background combinations at a WCAG AA

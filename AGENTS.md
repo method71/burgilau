@@ -23,8 +23,12 @@ spans several listed areas, read each applicable file.
   `.agents/README.md`
 - Changing HTML, CSS/SCSS, or JavaScript that interacts with the DOM:
   `.agents/frontend-conventions.md`
-- Changing JavaScript application structure, pricing, calculator logic, or
-  WhatsApp integration: `.agents/javascript-architecture.md`
+- Changing design tokens, design-system documentation, component design
+  contracts, states, accessibility guidance, or `.dsds.json` files:
+  `.agents/frontend-conventions.md` and `.agents/validation.md`
+- Changing calculator configuration, pricing, parameters, options, assets,
+  services, schema, generated controls, calculation behavior, or WhatsApp
+  message and URL generation: `.agents/calculator.md`
 - Changing dependencies, formatting, linting, tests, build configuration, or
   validation workflows: `.agents/validation.md`
 - Creating, editing, selecting, or reviewing advertising content or creatives
