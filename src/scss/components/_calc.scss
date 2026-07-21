@@ -1,0 +1,67 @@
+@use "../abstracts/breakpoints" as bp;
+@use "../abstracts/variables" as v;
+
+.calc {
+  padding: v.$space-7;
+  border-radius: v.$section-radius;
+  background: v.$color-surface;
+  scroll-margin-top: v.$space-5;
+}
+
+.calc__field {
+  margin-top: v.$space-7;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.calc__field-title {
+  display: block;
+  margin-bottom: v.$space-4;
+  font-size: 16px;
+}
+
+.calc__options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: row;
+  gap: v.$space-3;
+  width: 100%;
+  align-items: stretch;
+}
+
+.estimate {
+  margin-top: v.$space-8;
+  padding-top: v.$space-6;
+  border-top: 1px solid v.$color-line;
+  text-align: center;
+}
+
+.estimate__price {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.estimate__note {
+  margin: v.$space-2 0 0;
+  color: v.$color-muted;
+  font-size: 13px;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.calc__submit-icon {
+  position: relative;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+
+@include bp.mobile {
+  .calc {
+    padding: v.$space-6;
+  }
+}

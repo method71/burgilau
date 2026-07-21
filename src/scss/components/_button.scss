@@ -1,0 +1,73 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+
+.button {
+  @include m.flex-center;
+  @include m.interactive-transition(background, transform);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  gap: v.$space-3;
+  width: 100%;
+  min-height: 58px;
+  margin-top: v.$space-6;
+  padding: v.$space-5 v.$space-6;
+  border-radius: v.$button-radius;
+  background: v.$color-accent;
+  color: v.$color-surface;
+  font-size: 17px;
+  text-align: center;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -50%;
+    bottom: -50%;
+    left: -45%;
+    width: 32%;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    mix-blend-mode: soft-light;
+    transform: skewX(-18deg) translateX(-220%);
+    animation: button-shine 5s ease-in-out infinite;
+  }
+
+  &:hover {
+    background: v.$color-accent-hover;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  span,
+  img {
+    position: relative;
+    z-index: 1;
+  }
+
+  img {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+}
+
+@keyframes button-shine {
+  0% {
+    transform: skewX(-18deg) translateX(-220%);
+  }
+
+  18%,
+  100% {
+    transform: skewX(-18deg) translateX(620%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button::before {
+    animation: none;
+  }
+}

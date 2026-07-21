@@ -1,0 +1,193 @@
+@use "../abstracts/breakpoints" as bp;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+
+.hero {
+  position: relative;
+  width: 100%;
+}
+
+.hero__track {
+  display: flex;
+  gap: v.$space-5;
+  overflow-x: auto;
+  container-type: inline-size;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+
+  &.is-dragging,
+  &.is-loop-jump {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  &.is-dragging {
+    cursor: grabbing;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.hero__slide {
+  position: relative;
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: clamp(40rem, calc(44rem - 10cqw), 42rem);
+  overflow: hidden;
+  padding: v.$space-9 v.$space-8 v.$space-8;
+  border-radius: v.$section-radius;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%),
+    url("../../assets/hero-family-v5.webp") 25% center / cover no-repeat;
+  color: v.$color-surface;
+  text-align: center;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: opacity;
+
+  &--aircon {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%),
+      url("../../assets/hero-aircon-drilling-v1.webp") 50% 60% / cover no-repeat;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 28%, transparent 72%, #000 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 28%, transparent 72%, #000 100%);
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    max-width: 520px;
+    margin: 0.75em auto 0;
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+}
+
+.hero__eyebrow {
+  margin: 0 0 1.5lh;
+  color: v.$color-hero-content;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hero__advantages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: v.$space-5;
+  margin-top: auto;
+}
+
+.hero__advantage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  color: v.$color-hero-content;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.hero__advantage-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto v.$space-3;
+}
+
+.hero__controls {
+  @include m.flex-center;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  z-index: 2;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+.hero__pagination {
+  @include m.flex-center;
+  gap: 0;
+}
+
+.hero__dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: #b7c0cb;
+  }
+
+  &.is-active::before {
+    width: 8px;
+    height: 8px;
+    background: v.$color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid v.$color-muted;
+    outline-offset: -2px;
+  }
+}
+
+.hero__cta {
+  flex: none;
+  margin-top: v.$space-6;
+}
+
+@include bp.mobile {
+  .hero__slide {
+    padding: 26px v.$space-6 22px;
+  }
+
+  .hero__advantages {
+    gap: v.$space-3;
+  }
+
+  .hero__advantage {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__track {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,23 @@
+@use "../abstracts/breakpoints" as bp;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: v.$page-gap;
+  width: 100%;
+  max-width: v.$page-max-width;
+  margin: 0 auto;
+  padding: v.$page-gap 0;
+}
+
+.icon {
+  @include m.icon-stroke;
+}
+
+@include bp.mobile {
+  body {
+    padding: 0;
+  }
+}

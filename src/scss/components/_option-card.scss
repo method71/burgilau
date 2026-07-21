@@ -1,0 +1,67 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+
+.option-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.option-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.option-card label {
+  @include m.flex-center;
+  @include m.interactive-transition(border-color, background, color);
+  position: relative;
+  flex-direction: column;
+  gap: v.$space-4;
+  width: 100%;
+  min-width: 0;
+  min-height: 132px;
+  height: 100%;
+  padding: v.$space-5 v.$space-2;
+  border: 1px solid v.$color-card-line;
+  border-radius: v.$card-radius;
+  background: v.$color-surface;
+  font-size: clamp(12px, 3.5vw, 16px);
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    border-color: v.$color-card-hover;
+  }
+}
+
+.option-card input:checked + label {
+  border: 2px solid #000;
+  background: v.$color-card-selected;
+  color: v.$color-text;
+}
+
+.option-card__icon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 auto;
+  margin: 0 auto v.$space-2;
+  object-fit: contain;
+}
+
+.option-card__check {
+  position: absolute;
+  top: v.$space-3;
+  right: v.$space-3;
+  display: none;
+  width: 22px;
+  height: 22px;
+  color: #000;
+  fill: currentColor;
+}
+
+.option-card input:checked + label .option-card__check {
+  display: block;
+}
