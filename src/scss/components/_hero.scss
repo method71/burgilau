@@ -32,6 +32,12 @@
   touch-action: pan-x pan-y;
   cursor: grab;
 
+  &.is-static {
+    overflow: hidden;
+    scroll-snap-type: none;
+    cursor: default;
+  }
+
   &.is-dragging,
   &.is-loop-jump {
     scroll-behavior: auto;
@@ -65,7 +71,7 @@
       transparent 60%,
       var(--color-overlay-media-scrim) 100%
     ),
-    url("../../assets/slide-1.webp") 25% center / cover no-repeat;
+    url("../../assets/slide-1.png") 25% center / cover no-repeat;
   color: var(--color-text-inverse);
   text-align: center;
   scroll-snap-align: center;
@@ -164,6 +170,10 @@
   z-index: 2;
   margin: 0;
   transform: translateX(-50%);
+
+  &[hidden] {
+    display: none;
+  }
 }
 
 .hero__pagination {

@@ -7,10 +7,11 @@ export function initCompanyCard() {
 
 export function initHeroSlider() {
   const hero = document.querySelector("[data-hero]");
-  const heroTrack = document.querySelector("[data-hero-track]");
-  const heroSlides = [...document.querySelectorAll("[data-hero-slide]")];
-  const heroDots = [...document.querySelectorAll("[data-hero-dot]")];
-  const heroStatus = document.querySelector("[data-hero-status]");
+  const heroTrack = hero?.querySelector("[data-hero-track]");
+  const heroSlides = [...(heroTrack?.querySelectorAll("[data-hero-slide]") ?? [])];
+  const heroDots = [...(hero?.querySelectorAll("[data-hero-dot]") ?? [])];
+  const heroControls = hero?.querySelector("[data-hero-controls]");
+  const heroStatus = hero?.querySelector("[data-hero-status]");
 
   if (!hero || !heroTrack || !heroSlides.length) return;
 
@@ -19,6 +20,18 @@ export function initHeroSlider() {
     slide.setAttribute("role", "group");
     slide.setAttribute("aria-roledescription", "слайд");
   });
+
+  if (heroSlides.length === 1) {
+    heroControls?.setAttribute("hidden", "");
+    hero.removeAttribute("tabindex");
+    hero.removeAttribute("aria-roledescription");
+    heroTrack.classList.add("is-static");
+    heroSlides[0].removeAttribute("aria-hidden");
+    if (heroStatus) heroStatus.textContent = "";
+    return;
+  }
+
+  heroControls?.removeAttribute("hidden");
 
   const firstClone = heroSlides[0].cloneNode(true);
   const lastClone = heroSlides[heroSlides.length - 1].cloneNode(true);
