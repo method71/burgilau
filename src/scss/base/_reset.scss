@@ -1,4 +1,3 @@
-@use "../abstracts/variables" as v;
 
 *,
 *::before,
@@ -9,6 +8,6 @@
 body {
   margin: 0;
   padding: 0;
-  background: v.$color-page;
-  color: v.$color-text;
+  background: var(--color-page);
+  color: var(--color-text);
 }

@@ -1,33 +1,35 @@
-$font-family: "Inter", Arial, sans-serif;
+:root {
+  --font-family: "Inter", Arial, sans-serif;
 
-$color-page: #eef2f6;
-$color-surface: #fff;
-$color-text: #111318;
-$color-muted: #667085;
-$color-line: #e4e7ec;
-$color-card-line: #e3e7ec;
-$color-card-hover: #aab2bd;
-$color-card-selected: #f3f5f7;
-$color-accent: #25d366;
-$color-accent-hover: #1fbd5a;
-$color-company-hover: #f8fafc;
-$color-icon-muted: #98a2b3;
-$color-hero-content: rgba(255, 255, 255, 0.8);
+  --color-page: #eef2f6;
+  --color-surface: #fff;
+  --color-text: #111318;
+  --color-muted: #667085;
+  --color-line: #e4e7ec;
+  --color-card-line: #e3e7ec;
+  --color-card-hover: #aab2bd;
+  --color-card-selected: #f3f5f7;
+  --color-accent: #25d366;
+  --color-accent-hover: #1fbd5a;
+  --color-company-hover: #f8fafc;
+  --color-icon-muted: #98a2b3;
+  --color-hero-content: rgba(255, 255, 255, 0.8);
 
-$page-max-width: 620px;
-$page-gap: 1rem;
-$section-radius: 24px;
-$card-radius: 20px;
-$button-radius: 16px;
+  --page-max-width: 620px;
+  --page-gap: 1rem;
+  --section-radius: 24px;
+  --card-radius: 20px;
+  --button-radius: 16px;
 
-$space-1: 4px;
-$space-2: 8px;
-$space-3: 10px;
-$space-4: 12px;
-$space-5: 16px;
-$space-6: 20px;
-$space-7: 24px;
-$space-8: 28px;
-$space-9: 32px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 28px;
+  --space-9: 32px;
 
-$transition-fast: 0.15s;
+  --transition-fast: 0.15s;
+}

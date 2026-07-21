@@ -1,6 +1,5 @@
 @use "../abstracts/breakpoints" as bp;
 @use "../abstracts/mixins" as m;
-@use "../abstracts/variables" as v;
 
 .hero {
   position: relative;
@@ -9,7 +8,7 @@
 
 .hero__track {
   display: flex;
-  gap: v.$space-5;
+  gap: var(--space-5);
   overflow-x: auto;
   container-type: inline-size;
   scroll-snap-type: x mandatory;
@@ -43,12 +42,12 @@
   width: 100%;
   height: clamp(40rem, calc(44rem - 10cqw), 42rem);
   overflow: hidden;
-  padding: v.$space-9 v.$space-8 v.$space-8;
-  border-radius: v.$section-radius;
+  padding: var(--space-9) var(--space-8) var(--space-8);
+  border-radius: var(--section-radius);
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%),
     url("../../assets/hero-family-v5.webp") 25% center / cover no-repeat;
-  color: v.$color-surface;
+  color: var(--color-surface);
   text-align: center;
   scroll-snap-align: center;
   scroll-snap-stop: always;
@@ -90,7 +89,7 @@
 
 .hero__eyebrow {
   margin: 0 0 1.5lh;
-  color: v.$color-hero-content;
+  color: var(--color-hero-content);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -99,7 +98,7 @@
 .hero__advantages {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: v.$space-5;
+  gap: var(--space-5);
   margin-top: auto;
 }
 
@@ -108,7 +107,7 @@
   flex-direction: column;
   align-items: center;
   min-width: 0;
-  color: v.$color-hero-content;
+  color: var(--color-hero-content);
   font-size: 14px;
   line-height: 1.35;
   text-align: center;
@@ -118,7 +117,7 @@
   display: block;
   width: 28px;
   height: 28px;
-  margin: 0 auto v.$space-3;
+  margin: 0 auto var(--space-3);
 }
 
 .hero__controls {
@@ -158,27 +157,27 @@
   &.is-active::before {
     width: 8px;
     height: 8px;
-    background: v.$color-text;
+    background: var(--color-text);
   }
 
   &:focus-visible {
-    outline: 2px solid v.$color-muted;
+    outline: 2px solid var(--color-muted);
     outline-offset: -2px;
   }
 }
 
 .hero__cta {
   flex: none;
-  margin-top: v.$space-6;
+  margin-top: var(--space-6);
 }
 
 @include bp.mobile {
   .hero__slide {
-    padding: 26px v.$space-6 22px;
+    padding: 26px var(--space-6) 22px;
   }
 
   .hero__advantages {
-    gap: v.$space-3;
+    gap: var(--space-3);
   }
 
   .hero__advantage {

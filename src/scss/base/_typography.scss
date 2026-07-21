@@ -1,7 +1,6 @@
-@use "../abstracts/variables" as v;
 
 body {
-  font-family: v.$font-family;
+  font-family: var(--font-family);
   font-weight: 400;
 }
 
@@ -15,11 +14,11 @@ strong,
 .calc__field-title,
 .hero__eyebrow,
 .button {
-  font-family: v.$font-family;
+  font-family: var(--font-family);
   font-weight: 600;
 }
 
 .option-card label {
-  font-family: v.$font-family;
+  font-family: var(--font-family);
   font-weight: 400;
 }

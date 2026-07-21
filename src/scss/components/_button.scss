@@ -1,5 +1,4 @@
 @use "../abstracts/mixins" as m;
-@use "../abstracts/variables" as v;
 
 .button {
   @include m.flex-center;
@@ -7,14 +6,14 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  gap: v.$space-3;
+  gap: var(--space-3);
   width: 100%;
   min-height: 58px;
-  margin-top: v.$space-6;
-  padding: v.$space-5 v.$space-6;
-  border-radius: v.$button-radius;
-  background: v.$color-accent;
-  color: v.$color-surface;
+  margin-top: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--button-radius);
+  background: var(--color-accent);
+  color: var(--color-surface);
   font-size: 17px;
   text-align: center;
   text-decoration: none;
@@ -35,7 +34,7 @@
   }
 
   &:hover {
-    background: v.$color-accent-hover;
+    background: var(--color-accent)-hover;
   }
 
   &:active {

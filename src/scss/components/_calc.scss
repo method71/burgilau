@@ -1,15 +1,14 @@
 @use "../abstracts/breakpoints" as bp;
-@use "../abstracts/variables" as v;
 
 .calc {
-  padding: v.$space-7;
-  border-radius: v.$section-radius;
-  background: v.$color-surface;
-  scroll-margin-top: v.$space-5;
+  padding: var(--space-7);
+  border-radius: var(--section-radius);
+  background: var(--color-surface);
+  scroll-margin-top: var(--space-5);
 }
 
 .calc__field {
-  margin-top: v.$space-7;
+  margin-top: var(--space-7);
 
   &:first-child {
     margin-top: 0;
@@ -18,7 +17,7 @@
 
 .calc__field-title {
   display: block;
-  margin-bottom: v.$space-4;
+  margin-bottom: var(--space-4);
   font-size: 16px;
 }
 
@@ -26,15 +25,15 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-flow: row;
-  gap: v.$space-3;
+  gap: var(--space-3);
   width: 100%;
   align-items: stretch;
 }
 
 .estimate {
-  margin-top: v.$space-8;
-  padding-top: v.$space-6;
-  border-top: 1px solid v.$color-line;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
   text-align: center;
 }
 
@@ -45,8 +44,8 @@
 }
 
 .estimate__note {
-  margin: v.$space-2 0 0;
-  color: v.$color-muted;
+  margin: var(--space-2) 0 0;
+  color: var(--color-muted);
   font-size: 13px;
   line-height: 1.45;
   text-wrap: balance;
@@ -62,6 +61,6 @@
 
 @include bp.mobile {
   .calc {
-    padding: v.$space-6;
+    padding: var(--space-6);
   }
 }

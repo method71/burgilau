@@ -1,5 +1,3 @@
-@use "variables" as v;
-
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -8,7 +6,7 @@
 
 @mixin interactive-transition($properties...) {
   transition-property: $properties;
-  transition-duration: v.$transition-fast;
+  transition-duration: var(--transition-fast);
 }
 
 @mixin icon-stroke {
