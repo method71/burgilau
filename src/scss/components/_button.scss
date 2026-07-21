@@ -35,11 +35,16 @@
 
   &:hover {
     background: var(--color-accent-hover);
-    background: color-mix(in srgb, var(--color-accent), white 12%);
+    background: color-mix(in srgb, var(--color-accent), white 6%);
   }
 
   &:active {
     transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
   }
 
   span,

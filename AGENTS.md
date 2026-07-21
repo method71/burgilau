@@ -21,8 +21,6 @@ spans several listed areas, read each applicable file.
 
 - Creating, changing, organizing, or reviewing agent instructions:
   `.agents/README.md`
-- Performing work that implements or affects the active refactoring plan:
-  `.agents/refactoring.md`
 - Changing HTML, CSS/SCSS, or JavaScript that interacts with the DOM:
   `.agents/frontend-conventions.md`
 - Changing JavaScript application structure, pricing, calculator logic, or

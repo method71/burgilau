@@ -5,7 +5,7 @@ import { contactConfig, priceFormatConfig } from "./config.js";
 import { initCompanyCard, initHeroSlider } from "./ui.js";
 import { createWhatsAppMessage, createWhatsAppUrl } from "./whatsapp.js";
 
-function initCalculator(root, index) {
+export function initCalculator(root, index) {
   const service = getService(root.dataset.serviceId);
   const instanceId = `${root.id || service.id}-${index + 1}`;
   const calculatorUi = createCalculatorUi(root, service, instanceId);

@@ -32,6 +32,8 @@ behavior, calculator assets, services, or WhatsApp integration.
 - Keep calculator DOM generation and form state in
   `src/scripts/calculator-ui.js`. It consumes a resolved service and must not
   contain service-specific parameter names, labels, prices, or asset paths.
+  Generated option images must include intrinsic dimensions, empty alt text
+  when the adjacent label conveys the same meaning, and deferred decoding.
 - Keep WhatsApp message and URL generation in `src/scripts/whatsapp.js`. Build
   parameter lines from resolved selection descriptions and query strings with
   `URLSearchParams`; do not concatenate pre-encoded text.
@@ -74,7 +76,7 @@ behavior, calculator assets, services, or WhatsApp integration.
 - Keep `tests/unit/whatsapp.test.js` synchronized with the generic message
   contract; parse URLs and verify phone and decoded Cyrillic text through
   `searchParams`.
-- Keep `tests/e2e/app.spec.js` focused on the main local user flow, generated
-  parameter controls, WhatsApp link, hero controls, hover behavior, and browser
-  errors.
+- Keep `tests/e2e/app.spec.js` focused on the main local user flow and repeated
+  calculator isolation: generated controls, keyboard focus, WhatsApp links,
+  hero controls, hover contrast, and browser errors.
 - Follow `.agents/validation.md` for the commands required by the change.

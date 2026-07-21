@@ -1,5 +1,27 @@
 import { expect, test } from "@playwright/test";
 
+function getContrastRatio(foreground, background) {
+  const luminance = (color) => {
+    const channels = color
+      .match(/[\d.]+/g)
+      .slice(0, 3)
+      .map(Number);
+    return channels
+      .map((channel) => {
+        const value = channel / 255;
+        return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+      })
+      .reduce((total, value, index) => total + value * [0.2126, 0.7152, 0.0722][index], 0);
+  };
+
+  const foregroundLuminance = luminance(foreground);
+  const backgroundLuminance = luminance(background);
+  return (
+    (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+    (Math.min(foregroundLuminance, backgroundLuminance) + 0.05)
+  );
+}
+
 test("updates the estimate, WhatsApp link, and hero controls", async ({ page }) => {
   const browserErrors = [];
   page.on("console", (message) => {
@@ -16,6 +38,22 @@ test("updates the estimate, WhatsApp link, and hero controls", async ({ page }) 
   await expect(page.locator("[data-calculator-fields] .calc__field")).toHaveCount(2);
   await expect(page.locator("[data-calc-input]")).toHaveCount(6);
   await expect(price).toHaveText("от 35 000 ₸");
+
+  const brickInput = page.locator('[data-parameter-id="wallMaterial"][value="brick"]');
+  await brickInput.focus();
+  await expect(brickInput).toBeFocused();
+  const focusedCardOutline = await page
+    .locator('[data-parameter-id="wallMaterial"][value="brick"] + label')
+    .evaluate((element) => {
+      const style = element.ownerDocument.defaultView.getComputedStyle(element);
+      return { style: style.outlineStyle, width: style.outlineWidth };
+    });
+  expect(focusedCardOutline.style).not.toBe("none");
+  expect(focusedCardOutline.width).not.toBe("0px");
+  await brickInput.press("ArrowRight");
+  await expect(page.locator('[data-parameter-id="wallMaterial"][value="concrete"]')).toBeChecked();
+  await expect(price).toHaveText("от 37 500 ₸");
+
   await page.locator('[data-parameter-id="wallMaterial"][value="monolith"] + label').click();
   await page.locator('[data-parameter-id="wallThickness"][value="large"] + label').click();
   await expect(price).toHaveText("от 46 000 ₸");
@@ -26,18 +64,59 @@ test("updates the estimate, WhatsApp link, and hero controls", async ({ page }) 
   expect(whatsappUrl.searchParams.get("text")).toContain("Толщина стены: Более 50 см");
   expect(whatsappUrl.searchParams.get("text")).toContain("от 46 000 ₸");
 
-  const defaultButtonBackground = await whatsappLink.evaluate(
-    (element) => element.ownerDocument.defaultView.getComputedStyle(element).backgroundColor,
-  );
+  const defaultButtonStyle = await whatsappLink.evaluate((element) => {
+    const style = element.ownerDocument.defaultView.getComputedStyle(element);
+    return { background: style.backgroundColor, color: style.color };
+  });
   await whatsappLink.hover();
   const hoveredButtonStyle = await whatsappLink.evaluate((element) => {
     const style = element.ownerDocument.defaultView.getComputedStyle(element);
-    return { background: style.backgroundColor, opacity: style.opacity };
+    return { background: style.backgroundColor, color: style.color, opacity: style.opacity };
   });
   expect(hoveredButtonStyle.opacity).toBe("1");
-  expect(hoveredButtonStyle.background).not.toBe(defaultButtonBackground);
+  expect(hoveredButtonStyle.background).not.toBe(defaultButtonStyle.background);
+  expect(
+    getContrastRatio(defaultButtonStyle.color, defaultButtonStyle.background),
+  ).toBeGreaterThanOrEqual(4.5);
+  expect(
+    getContrastRatio(hoveredButtonStyle.color, hoveredButtonStyle.background),
+  ).toBeGreaterThanOrEqual(4.5);
 
   await secondHeroDot.click();
   await expect(secondHeroDot).toHaveAttribute("aria-current", "true");
   expect(browserErrors).toEqual([]);
+});
+
+test("keeps repeated calculator instances independent", async ({ page }) => {
+  await page.goto("./");
+
+  await page.locator("[data-calculator]").evaluate(async (firstRoot) => {
+    const secondRoot = firstRoot.cloneNode(true);
+    secondRoot.id = "second-calculator";
+    firstRoot.after(secondRoot);
+
+    const moduleUrl = new URL("src/scripts/main.js", firstRoot.ownerDocument.baseURI);
+    const { initCalculator } = await import(moduleUrl.href);
+    initCalculator(secondRoot, 1);
+  });
+
+  const calculators = page.locator("[data-calculator]");
+  await expect(calculators).toHaveCount(2);
+  const firstCalculator = calculators.nth(0);
+  const secondCalculator = calculators.nth(1);
+
+  await secondCalculator
+    .locator('[data-parameter-id="wallMaterial"][value="monolith"] + label')
+    .click();
+  await secondCalculator
+    .locator('[data-parameter-id="wallThickness"][value="large"] + label')
+    .click();
+
+  await expect(firstCalculator.locator("[data-price]")).toHaveText("от 35 000 ₸");
+  await expect(secondCalculator.locator("[data-price]")).toHaveText("от 46 000 ₸");
+
+  const radioNames = await page
+    .locator("[data-calc-input]")
+    .evaluateAll((inputs) => inputs.map((input) => input.name));
+  expect(new Set(radioNames).size).toBe(4);
 });

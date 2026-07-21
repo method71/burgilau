@@ -36,9 +36,14 @@
 }
 
 .option-card input:checked + label {
-  border: 2px solid #000;
+  border: 2px solid var(--color-text);
   background: var(--color-card-selected);
   color: var(--color-text);
+}
+
+.option-card input:focus + label {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .option-card__icon {
@@ -57,7 +62,7 @@
   display: none;
   width: 22px;
   height: 22px;
-  color: #000;
+  color: var(--color-text);
   fill: currentColor;
 }
 

@@ -33,6 +33,10 @@ function createOptionCard(instanceId, parameter, option) {
   icon.className = "option-card__icon";
   icon.src = option.icon;
   icon.alt = "";
+  icon.width = 72;
+  icon.height = 72;
+  icon.loading = "lazy";
+  icon.decoding = "async";
   text.dataset.optionLabel = "";
   text.textContent = option.label;
 

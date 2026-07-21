@@ -7,7 +7,7 @@ export default defineConfig({
   retries: 0,
   reporter: "line",
   use: {
-    baseURL: "http://127.0.0.1:4173/burgilau/",
+    baseURL: "http://127.0.0.1:4174/burgilau/",
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
   },
@@ -18,9 +18,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run dev -- --host 127.0.0.1 --port 4173",
-    url: "http://127.0.0.1:4173/burgilau/",
-    reuseExistingServer: true,
+    command: "npm run dev -- --host 127.0.0.1 --port 4174",
+    url: "http://127.0.0.1:4174/burgilau/",
+    reuseExistingServer: false,
     timeout: 30000,
   },
 });

@@ -18,8 +18,9 @@ build configuration, or when selecting verification for another change.
 - `npm run lint:js` checks JavaScript and configuration files.
 - `npm run lint:styles` checks SCSS; `npm run lint` runs both linters.
 - `npm run test:unit` runs business-logic tests in `tests/unit/`.
-- `npm run test:e2e` runs the Chromium main-flow test in `tests/e2e/` and may
-  reuse the Vite server on port 4173.
+- `npm run test:e2e` runs the Chromium scenarios in `tests/e2e/` against an
+  isolated Vite server on port 4174. Keep this port separate from the normal
+  development server so tests cannot reuse stale application output.
 - `npm test` runs unit and browser tests.
 - `npm run check` is the complete non-visual gate: formatting, both linters,
   unit and browser tests, and the production build.
