@@ -7,6 +7,10 @@ interacts with the DOM.
 - Use BEM classes for presentation, not as JavaScript hooks.
 - Select elements from JavaScript through `data-*` attributes rather than CSS
   classes.
+- Scope component queries to their root element so repeated component instances
+  do not share controls or output state.
+- Build configuration-driven calculator controls with DOM APIs and
+  `textContent`; do not interpolate configuration values through `innerHTML`.
 - Name classes for JavaScript-managed states with the `is-*` prefix.
 - Prefer the native `:checked` selector for radio-button states instead of
   duplicating that state in JavaScript.

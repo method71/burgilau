@@ -5,8 +5,11 @@ import { createWhatsAppMessage, createWhatsAppUrl } from "../../src/scripts/what
 
 test("creates a readable WhatsApp message", () => {
   const message = createWhatsAppMessage({
-    material: "Монолит",
-    thickness: "Более 50 см",
+    intro: "Здравствуйте! Хочу заказать установку приточного клапана.",
+    selections: [
+      { label: "Материал стены", value: "Монолит" },
+      { label: "Толщина стены", value: "Более 50 см" },
+    ],
     formattedPrice: "от 46 000 ₸",
   });
 

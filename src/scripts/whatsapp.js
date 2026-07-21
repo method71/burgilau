@@ -1,9 +1,8 @@
-export function createWhatsAppMessage({ material, thickness, formattedPrice }) {
+export function createWhatsAppMessage({ intro, selections, formattedPrice }) {
   return [
-    "Здравствуйте! Хочу заказать установку приточного клапана.",
+    intro,
     "",
-    `Материал стены: ${material}`,
-    `Толщина стены: ${thickness}`,
+    ...selections.map(({ label, value }) => `${label}: ${value}`),
     `Предварительная стоимость: ${formattedPrice}`,
   ].join("\n");
 }

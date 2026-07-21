@@ -75,45 +75,9 @@
 
   </section>
 
-  <section class="calc" id="calculator" data-calculator>
+  <section class="calc" id="calculator" data-calculator data-service-id="airInlet">
+    <div data-calculator-fields></div>
 
-    <div class="calc__field">
-      <span class="calc__field-title">Материал стены</span>
-      <div class="calc__options">
-        <div class="option-card">
-          <input data-calc-input type="radio" name="material" id="material-brick" value="brick" checked>
-          <label for="material-brick"><img class="option-card__icon" src="/src/assets/material-brick.webp" alt=""><span data-option-label>Кирпич</span><svg class="option-card__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
-        </div>
-        <div class="option-card">
-          <input data-calc-input type="radio" name="material" id="material-concrete" value="concrete">
-          <label for="material-concrete"><img class="option-card__icon" src="/src/assets/material-concrete.webp" alt=""><span data-option-label>Бетон</span><svg class="option-card__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
-        </div>
-        <div class="option-card">
-          <input data-calc-input type="radio" name="material" id="material-monolith" value="monolith">
-          <label for="material-monolith"><img class="option-card__icon" src="/src/assets/material-monolith.webp" alt=""><span data-option-label>Монолит</span><svg class="option-card__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="calc__field">
-      <span class="calc__field-title">Толщина стены</span>
-      <div class="calc__options">
-        <div class="option-card">
-          <input data-calc-input type="radio" name="thickness" id="thickness-small" value="small" checked>
-          <label for="thickness-small"><img class="option-card__icon" src="/src/assets/thickness-small.webp" alt=""><span data-option-label>До 30 см</span><svg class="option-card__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
-        </div>
-        <div class="option-card">
-          <input data-calc-input type="radio" name="thickness" id="thickness-medium" value="medium">
-          <label for="thickness-medium"><img class="option-card__icon" src="/src/assets/thickness-medium.webp" alt=""><span data-option-label>30–50 см</span><svg class="option-card__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
-        </div>
-        <div class="option-card">
-          <input data-calc-input type="radio" name="thickness" id="thickness-large" value="large">
-          <label for="thickness-large"><img class="option-card__icon" src="/src/assets/thickness-large.webp" alt=""><span data-option-label>Более 50 см</span><svg class="option-card__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"/></svg></label>
-        </div>
-      </div>
-    </div>
-
-    
     <div class="estimate">
       <div class="estimate__price" data-price>от 35 000 ₸</div>
       <div class="estimate__note">Стоимость предварительная. Точную цену подтвердим после уточнения деталей объекта.</div>

@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { calculatePrice, formatPrice } from "../../src/scripts/calculator.js";
-import { priceConfig, priceFormatConfig } from "../../src/scripts/config.js";
+import { calculatePrice, describeSelections, formatPrice } from "../../src/scripts/calculator.js";
+import { getService } from "../../src/scripts/calculator/services/index.js";
+import { priceFormatConfig } from "../../src/scripts/config.js";
+
+const service = getService("airInlet");
 
 const priceCases = [
   ["brick", "small", 35000],
@@ -18,16 +21,32 @@ const priceCases = [
 
 test("calculates every supported price combination", () => {
   priceCases.forEach(([material, thickness, expected]) => {
-    const actual = calculatePrice(priceConfig, { material, thickness });
+    const actual = calculatePrice(service, {
+      wallMaterial: material,
+      wallThickness: thickness,
+    });
     assert.equal(actual, expected, `${material} + ${thickness}`);
   });
 });
 
 test("rejects an unknown pricing option", () => {
-  assert.throws(() => calculatePrice(priceConfig, { material: "unknown", thickness: "small" }), {
-    name: "RangeError",
-    message: "Unknown material option: unknown",
-  });
+  assert.throws(
+    () => calculatePrice(service, { wallMaterial: "unknown", wallThickness: "small" }),
+    {
+      name: "RangeError",
+      message: "Unknown wallMaterial option: unknown",
+    },
+  );
+});
+
+test("describes selections from reusable parameter metadata", () => {
+  assert.deepEqual(
+    describeSelections(service, { wallMaterial: "monolith", wallThickness: "large" }),
+    [
+      { label: "Материал стены", value: "Монолит" },
+      { label: "Толщина стены", value: "Более 50 см" },
+    ],
+  );
 });
 
 test("formats the estimate for the configured locale", () => {

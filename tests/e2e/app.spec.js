@@ -13,9 +13,11 @@ test("updates the estimate, WhatsApp link, and hero controls", async ({ page }) 
   const whatsappLink = page.locator("[data-whatsapp]");
   const secondHeroDot = page.locator("[data-hero-dot]").nth(1);
 
+  await expect(page.locator("[data-calculator-fields] .calc__field")).toHaveCount(2);
+  await expect(page.locator("[data-calc-input]")).toHaveCount(6);
   await expect(price).toHaveText("от 35 000 ₸");
-  await page.locator('label[for="material-monolith"]').click();
-  await page.locator('label[for="thickness-large"]').click();
+  await page.locator('[data-parameter-id="wallMaterial"][value="monolith"] + label').click();
+  await page.locator('[data-parameter-id="wallThickness"][value="large"] + label').click();
   await expect(price).toHaveText("от 46 000 ₸");
 
   const whatsappUrl = new URL(await whatsappLink.getAttribute("href"));
