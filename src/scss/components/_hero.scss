@@ -6,7 +6,7 @@
   width: 100%;
 
   &:focus-visible {
-    outline: 3px solid var(--color-focus);
+    outline: 3px solid var(--color-border-focus);
     outline-offset: 4px;
   }
 }
@@ -61,7 +61,7 @@
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%),
     url("../../assets/hero-family-v5.webp") 25% center / cover no-repeat;
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
   text-align: center;
   scroll-snap-align: center;
   scroll-snap-stop: always;
@@ -109,7 +109,7 @@
 
 .hero__eyebrow {
   margin: 0 0 1.5lh;
-  color: var(--color-hero-content);
+  color: var(--color-text-on-media);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -127,7 +127,7 @@
   flex-direction: column;
   align-items: center;
   min-width: 0;
-  color: var(--color-hero-content);
+  color: var(--color-text-on-media);
   font-size: 14px;
   line-height: 1.35;
   text-align: center;
@@ -177,11 +177,11 @@
   &.is-active::before {
     width: 8px;
     height: 8px;
-    background: var(--color-text);
+    background: var(--color-text-primary);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-muted);
+    outline: 2px solid var(--color-text-secondary);
     outline-offset: -2px;
   }
 }

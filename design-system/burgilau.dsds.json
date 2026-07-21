@@ -1,0 +1,317 @@
+{
+  "$schema": "https://designsystemdocspec.org/v0.15.2/dsds.bundled.schema.json",
+  "dsdsVersion": "0.15.2",
+  "systemInfo": {
+    "name": "Burgilau Design System",
+    "version": "0.1.0",
+    "organization": "Burgilau"
+  },
+  "documentBlocks": [
+    {
+      "kind": "sections",
+      "items": [
+        {
+          "title": "Purpose",
+          "body": "A lightweight design-system contract for the Burgilau landing page and calculator experience. Token values are defined in design-system/tokens.json and exported to src/scss/abstracts/_variables.scss."
+        }
+      ]
+    },
+    {
+      "kind": "guidelines",
+      "items": [
+        {
+          "guidance": "Use semantic CSS custom properties instead of hard-coded visual values in components.",
+          "rationale": "Semantic tokens keep visual changes centralized and make theming possible without rewriting component styles.",
+          "level": "must",
+          "category": "development"
+        },
+        {
+          "guidance": "Keep normal and interactive text/background combinations at WCAG AA contrast or better.",
+          "rationale": "The landing page is task-focused and must remain readable on mobile and desktop.",
+          "level": "must",
+          "category": "accessibility"
+        }
+      ]
+    }
+  ],
+  "entityGroups": [
+    {
+      "name": "Foundations",
+      "entities": [
+        {
+          "kind": "token-group",
+          "identifier": "color",
+          "tokenType": "color",
+          "source": "./tokens.json#/color",
+          "description": "Semantic color tokens used by the page, calculator, cards, buttons, and focus states.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["tokens", "color", "theme"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Name color tokens by semantic role and state: background-*, text-*, border-*, and icon-*.",
+                  "rationale": "Role-based semantic tokens scale across components and keep values independent from implementation details.",
+                  "level": "must",
+                  "category": "development"
+                },
+                {
+                  "guidance": "Use --color-border-focus for shared visible keyboard focus indicators.",
+                  "rationale": "A single focus border token makes accessibility checks and future theme changes predictable.",
+                  "level": "must",
+                  "category": "accessibility"
+                },
+                {
+                  "guidance": "Use --color-background-accent and --color-border-accent only for primary actions, WhatsApp-related action surfaces, and emphasized states.",
+                  "rationale": "Accent roles carry conversion weight and should not be diluted by decorative use.",
+                  "level": "should",
+                  "category": "visual-design"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "token-group",
+          "identifier": "space",
+          "tokenType": "dimension",
+          "source": "./tokens.json#/space",
+          "description": "Spacing scale and page layout spacing tokens.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["tokens", "spacing", "layout"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Use spacing tokens for component padding, gaps, and layout rhythm.",
+                  "rationale": "Consistent spacing keeps the compact mobile-first layout predictable.",
+                  "level": "should",
+                  "category": "visual-design"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "token-group",
+          "identifier": "radius",
+          "tokenType": "dimension",
+          "source": "./tokens.json#/radius",
+          "description": "Radius tokens for page sections, cards, and buttons.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["tokens", "shape"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Use the most specific radius token for the surface being styled.",
+                  "rationale": "Section, card, and button surfaces have different visual weights.",
+                  "level": "should",
+                  "category": "visual-design"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Components",
+      "entities": [
+        {
+          "kind": "component",
+          "identifier": "button",
+          "name": "Button",
+          "description": "Primary action control used for conversion-oriented calls to action.",
+          "metadata": {
+            "status": "stable",
+            "links": [
+              {
+                "label": "Styles",
+                "url": "../src/scss/components/_button.scss"
+              }
+            ],
+            "tags": ["component", "action"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "use-cases",
+              "items": [
+                {
+                  "description": "Starting a WhatsApp contact flow or confirming the main page action.",
+                  "stance": "recommended"
+                }
+              ]
+            },
+            {
+              "kind": "states",
+              "items": [
+                {
+                  "identifier": "default",
+                  "description": "Ready for interaction."
+                },
+                {
+                  "identifier": "hover",
+                  "description": "Uses the accent background hover token where the button is accent-backed."
+                },
+                {
+                  "identifier": "focus-visible",
+                  "description": "Shows a visible focus indicator using the shared focus token."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "component",
+          "identifier": "option-card",
+          "name": "Option Card",
+          "description": "Selectable card presentation for calculator radio options.",
+          "metadata": {
+            "status": "stable",
+            "links": [
+              {
+                "label": "Styles",
+                "url": "../src/scss/components/_option-card.scss"
+              }
+            ],
+            "tags": ["component", "calculator", "form"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Expose native radio focus on the visible option card label.",
+                  "rationale": "Keyboard users must not lose the active focus location when radios are visually hidden.",
+                  "level": "must",
+                  "category": "accessibility"
+                }
+              ]
+            },
+            {
+              "kind": "states",
+              "items": [
+                {
+                  "identifier": "default",
+                  "description": "Unselected option."
+                },
+                {
+                  "identifier": "hover",
+                  "description": "Uses the shared hover border token."
+                },
+                {
+                  "identifier": "selected",
+                  "description": "Uses the shared selected surface background token."
+                },
+                {
+                  "identifier": "focus-visible",
+                  "description": "Shows a visible focus indicator through the associated native radio."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "component",
+          "identifier": "calc",
+          "name": "Calculator",
+          "description": "Configuration-driven price calculator that renders controls from resolved service definitions.",
+          "metadata": {
+            "status": "stable",
+            "links": [
+              {
+                "label": "UI module",
+                "url": "../src/scripts/calculator-ui.js"
+              },
+              {
+                "label": "Schema",
+                "url": "../src/scripts/calculator/schema.js"
+              }
+            ],
+            "tags": ["component", "calculator", "configuration"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "api",
+              "dataAttributes": [
+                {
+                  "identifier": "data-calculator",
+                  "description": "Root calculator host."
+                },
+                {
+                  "identifier": "data-service-id",
+                  "description": "Stable service identifier used to resolve calculator configuration."
+                },
+                {
+                  "identifier": "data-calculator-fields",
+                  "description": "Container where generated parameter controls are rendered."
+                }
+              ]
+            },
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Render calculator options from resolved service configuration instead of hard-coding option groups in HTML.",
+                  "rationale": "The calculator must support additional services and parameter reuse without duplicating UI markup.",
+                  "level": "must",
+                  "category": "development"
+                },
+                {
+                  "guidance": "Use data attributes as JavaScript hooks and keep BEM classes presentation-only.",
+                  "rationale": "This keeps styling and behavior contracts independent.",
+                  "level": "must",
+                  "category": "development"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Patterns",
+      "entities": [
+        {
+          "kind": "pattern",
+          "identifier": "configuration-driven-calculator",
+          "name": "Configuration-Driven Calculator",
+          "description": "A calculator architecture where shared parameter definitions are combined with service-specific pricing, defaults, ordering, and allowed options.",
+          "metadata": {
+            "status": "stable",
+            "tags": ["calculator", "architecture", "configuration"]
+          },
+          "documentBlocks": [
+            {
+              "kind": "guidelines",
+              "items": [
+                {
+                  "guidance": "Keep reusable parameter labels, option ids, option labels, and icons in parameter definitions, not service configs.",
+                  "rationale": "Service configs should only own service-specific pricing and availability.",
+                  "level": "must",
+                  "category": "development"
+                },
+                {
+                  "guidance": "Validate service configs before calculation and rendering.",
+                  "rationale": "Broken references, defaults, or modifiers should fail explicitly before reaching the UI.",
+                  "level": "must",
+                  "category": "development"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
