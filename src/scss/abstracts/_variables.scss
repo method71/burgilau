@@ -10,14 +10,16 @@
   --color-card-hover: #aab2bd;
   --color-card-selected: #f3f5f7;
   --color-focus: #2563eb;
-  --color-accent: #087a35;
-  --color-accent-hover: #178241;
+  --color-accent: #25d366;
+  --color-accent-hover: #32d76f;
+  --color-on-accent: #111318;
   --color-company-hover: #f8fafc;
   --color-icon-muted: #98a2b3;
   --color-hero-content: rgba(255, 255, 255, 0.8);
 
   --page-max-width: 620px;
   --page-gap: 1rem;
+  --page-inline-padding: clamp(0.5rem, 3vw, 1.5rem);
   --section-radius: 24px;
   --card-radius: 20px;
   --button-radius: 16px;

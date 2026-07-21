@@ -6,9 +6,10 @@ function getContrastRatio(foreground, background) {
       .match(/[\d.]+/g)
       .slice(0, 3)
       .map(Number);
+    const usesNormalizedSrgb = color.startsWith("color(srgb");
     return channels
       .map((channel) => {
-        const value = channel / 255;
+        const value = usesNormalizedSrgb ? channel : channel / 255;
         return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
       })
       .reduce((total, value, index) => total + value * [0.2126, 0.7152, 0.0722][index], 0);
@@ -101,6 +102,7 @@ test("updates the estimate, WhatsApp link, and hero controls", async ({ page }) 
     return { background: style.backgroundColor, color: style.color };
   });
   await whatsappLink.hover();
+  await page.waitForTimeout(200);
   const hoveredButtonStyle = await whatsappLink.evaluate((element) => {
     const style = element.ownerDocument.defaultView.getComputedStyle(element);
     return { background: style.backgroundColor, color: style.color, opacity: style.opacity };
