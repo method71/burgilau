@@ -25,6 +25,10 @@ spans several listed areas, read each applicable file.
   `.agents/refactoring.md`
 - Changing HTML, CSS/SCSS, or JavaScript that interacts with the DOM:
   `.agents/frontend-conventions.md`
+- Changing JavaScript application structure, pricing, calculator logic, or
+  WhatsApp integration: `.agents/javascript-architecture.md`
+- Changing JavaScript application structure, pricing, calculator logic, or
+  WhatsApp integration: `.agents/javascript-architecture.md`
 - Creating, editing, selecting, or reviewing advertising content or creatives
   for the window air-inlet valve: `.agents/content-matrix.md` (temporary; use
   until the user replaces or withdraws this content matrix).
